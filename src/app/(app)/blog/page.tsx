@@ -20,7 +20,11 @@ const Page = async () => {
     return (
         <div className=" -space-y-px">
             <Hero />
-            <Archive blogs={blogs.docs} />
+            {
+                blogs.docs.length > 0 && (
+                    <Archive blogs={blogs.docs} />
+                )
+            }
         </div> 
     )
 }

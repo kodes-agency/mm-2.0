@@ -20,7 +20,7 @@ export const Hero = ({ blog }: { blog: Blog }) => {
       <div className="max-w-4xl flex flex-col space-y-10 md:space-y-14 px-5 md:px-10">
         <div className="grid grid-cols-3">
           <div className="flex gap-2 flex-wrap">
-            {blog.category.map((category, id) => (
+            {blog.content.category.map((category, id) => (
               <p
                 key={id}
                 className="text-xs text-black capitalize bg-light-cyan p-1 rounded-sm whitespace-nowrap"
@@ -44,12 +44,12 @@ export const Hero = ({ blog }: { blog: Blog }) => {
           </time>
 
           <p className="text-black text-sm text-end whitespace-nowrap">
-            {getReadTime(blog.content_html || '')} min read
+            {getReadTime(blog.content.content_html || '')} min read
           </p>
         </div>
 
         <h1 className="text-4xl text-black md:text-6xl lg:text-7xl">{blog.title}</h1>
-        <p className="text-black">{blog.description}</p>
+        <p className="text-black">{blog.content.description}</p>
       </div>
       <Image
         // @ts-expect-error

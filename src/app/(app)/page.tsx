@@ -30,8 +30,10 @@ const Page = async () => {
             <About />
             <Services services={services.docs} />
             <CTA />
-            {/* @ts-ignore */}
-            <Blog blogs={blogs}/>
+            {
+              // @ts-expect-error
+              blogs.docs.length > 0 && <Blog blogs={blogs}/>
+            }
         </div> 
     )
 }

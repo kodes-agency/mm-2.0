@@ -21,7 +21,7 @@ export const Article = ({
                 <div className={`flex flex-col justify-around h-full lg:col-span-2 pt-4 md:p-4`}>
                     <div className={`${id === 0 ? "space-y-4" : "space-y-2"}`}>
                         <h3 className={` ${id === 0 ? "text-xl lg:text-3xl" : "text-xl lg:text-base"} font-bold`}>{blog.title}</h3>
-                        <p className={` ${id === 0 ? "" : "lg:text-sm"}`}>{id === 0 ? blog.description : `${trimStringToLength(blog.description, 70)}...`}</p>
+                        <p className={` ${id === 0 ? "" : "lg:text-sm"}`}>{id === 0 ? blog.content.description : `${trimStringToLength(blog.content.description, 70)}...`}</p>
                     </div>
                     <p className={` pt-2 ${id === 0 ? "" : "lg:text-sm"}`}>{new Date(blog.createdAt).toLocaleDateString('en-US', {year: 'numeric', month: "long"})}</p>
                 </div>

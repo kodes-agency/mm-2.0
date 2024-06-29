@@ -11,7 +11,7 @@ export const BlogCard = ({ blog }: { blog: Blog }) => {
           <Image src={blog.image.url} alt={blog.image.alt} className="w-full h-60 object-cover" width={320} height={240}/>
           <div className='p-5 space-y-4 flex flex-col'>
             <div className='flex gap-2 flex-wrap'>
-                {blog.category.map((category, id) => (
+                {blog.content.category.map((category, id) => (
                 <p key={id} className="text-xs text-black capitalize bg-light-cyan p-1 rounded-sm whitespace-nowrap">
                     {category.replace(/-/g, ' ')}
                 </p>

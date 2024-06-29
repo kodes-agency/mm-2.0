@@ -6,7 +6,7 @@ import { Blog } from '@/payload-types'
 import useIsomorphicLayoutEffect from '@/lib/isomorphicEffect'
 
 export const Content = ({ blog }: { blog: Blog }) => {
-  const H3Texts = blog.content_html?.match(/<h3>(.*?)<\/h3>/g)?.map((h3) => h3.replace(/<[^>]*>?/gm, '')) || []
+  const H3Texts = blog.content.content_html?.match(/<h3>(.*?)<\/h3>/g)?.map((h3) => h3.replace(/<[^>]*>?/gm, '')) || []
 
   useIsomorphicLayoutEffect(() => {
     gsap.registerPlugin(ScrollToPlugin)
@@ -50,7 +50,7 @@ export const Content = ({ blog }: { blog: Blog }) => {
           [&_ul]:list-disc [&_ul]:pl-6 md:[&_ul]:pl-12 [&_ul]:space-y-1
           [&_ol]:list-decimal [&_ol]:pl-6 md:[&_ol]:pl-12 [&_ol]:space-y-1
           "
-        dangerouslySetInnerHTML={{ __html: blog.content_html || '' }}
+        dangerouslySetInnerHTML={{ __html: blog.content.content_html || '' }}
       ></div>
     </article>
   )
