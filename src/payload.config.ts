@@ -1,11 +1,9 @@
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
-// import { payloadCloud } from '@payloadcms/plugin-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload/config'
-// import sharp from 'sharp'
 import { fileURLToPath } from 'url'
-
+import { s3Storage } from '@payloadcms/storage-s3'
 import { Users } from './collections/Users'
 import { LandingPages } from './collections/landing-pages'
 import { Media } from './collections/Media'
@@ -30,4 +28,22 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
+  plugins: [
+    s3Storage({
+      collections: {
+        ['media']: {
+          prefix: 'media',
+        },
+      },
+      bucket: process.env.S3_BUCKET,
+      config: {
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID,
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+        },
+        region: process.env.S3_REGION,
+        // ... Other S3 configuration
+      },
+    }),
+  ],
 })

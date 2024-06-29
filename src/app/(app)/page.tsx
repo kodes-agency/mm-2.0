@@ -28,7 +28,6 @@ const Page = async () => {
     })
     return (
         <div className=" -space-y-px">
-          <p className="text-7xl">oops</p>
             <Hero />
             <About />
             <Services services={services.docs} />
