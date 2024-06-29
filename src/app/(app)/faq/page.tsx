@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   title: 'Frequently Asked Questions | Mission Morph Marketing Agency',
   description: 'Do you have questions about our Digital Marketing services, agency contracts, business eligibility or contact options? See our FAQ page for more information.',
 }
+export const dynamic = 'force-dynamic'
+
 
 const Page = async () => {
     const payload = await getPayloadHMR({ config: configPromise })

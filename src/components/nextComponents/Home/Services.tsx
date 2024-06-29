@@ -124,7 +124,7 @@ export const Services = ({services} : {services: Service[]}) => {
                                     {
                                         service.homePage["image-bg"] &&
                                         // @ts-expect-error
-                                        <Image className="serviceImgBg top-0 absolute" src={service.homePage["image-bg"].url} alt={service.homePage["image-bg"].alt} width={288} height={554} />
+                                        <Image className="serviceImgBg top-0 absolute" src={service.homePage['image-bg'].url} alt={service.homePage["image-bg"].alt} width={288} height={554} />
                                     }
                                     {/* @ts-expect-error */}
                                     <Image className="absolute serviceImgFg" src={service.homePage.image.url} alt={service.homePage.image.alt} width={288} height={554} />

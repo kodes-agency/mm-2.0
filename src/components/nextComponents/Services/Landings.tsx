@@ -21,7 +21,7 @@ export const Landings = ({
   const wrapperRef = useRef<HTMLElement | any>('')
 
   useGSAP(() => {
-    const title = new SplitType(headerRef.current, {
+    const title = new SplitType('.headerEl', {
       types: 'lines,chars',
     })
 
@@ -36,7 +36,7 @@ export const Landings = ({
       },
     })
 
-    tl.from(paraRef.current, {
+    tl.from('.paraEl', {
       opacity: 0,
       duration: 2,
       ease: 'power3.out',
@@ -54,6 +54,10 @@ export const Landings = ({
       duration: 1.5,
       ease: 'power3.out',
     })
+
+    return () =>{
+      title.revert()
+    }
   })
 
   return (
@@ -66,13 +70,13 @@ export const Landings = ({
           <div ref={wrapperRef} className="flex flex-col max-w-4xl space-y-10">
             <h2
               ref={headerRef}
-              className=" text-white font-bold text-5xl lg:text-6xl "
+              className="headerEl text-white font-bold text-5xl lg:text-6xl "
               style={{ color: style.highlightColor }}
             >
               <strong className=" text-white font-black">Hey there!</strong> Do you know that, we
               focus on real problems, so that you get working solutions.
             </h2>
-            <p ref={paraRef} className="text-white text-lg font-medium">
+            <p ref={paraRef} className="paraEl text-white text-lg font-medium">
               We thrive in the process of solving industry wide problems for our clients. You can make
               your business grow, while our{' '}
               <strong style={{ color: style.highlightColor }} className=" uppercase font-bold">

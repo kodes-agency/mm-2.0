@@ -66,7 +66,7 @@ const SubscribePopup = ({
                   <Input
                     type="email"
                     placeholder="Email"
-                    className="w-full text-white h-24 rounded-none border-none"
+                    className="w-full text-white text-base h-24 rounded-none border-none"
                     onInput={(e) => setUserData({ ...userData, email: e.currentTarget.value })}
                   />
                 </div>
@@ -75,7 +75,7 @@ const SubscribePopup = ({
                   <Input
                     type="text"
                     placeholder="Phone number"
-                    className="w-full text-white rounded-none h-24 border-none"
+                    className="w-full text-white text-base rounded-none h-24 border-none"
                     onInput={(e) => setUserData({ ...userData, phone: e.currentTarget.value })}
                   />
                 </div>
@@ -85,7 +85,7 @@ const SubscribePopup = ({
                   <Input
                     type="text"
                     placeholder="Name"
-                    className="w-full text-white h-24 rounded-none border-none"
+                    className="w-full text-white text-base h-24 rounded-none border-none"
                     onInput={(e) => setUserData({ ...userData, name: e.currentTarget.value })}
                   />
                 </div>
@@ -94,7 +94,7 @@ const SubscribePopup = ({
                   <Input
                     type="text"
                     placeholder="Company name"
-                    className="w-full text-white rounded-none h-24 border-none"
+                    className="w-full text-white text-base rounded-none h-24 border-none"
                     onInput={(e) => setUserData({ ...userData, company: e.currentTarget.value })}
                   />
                 </div>
@@ -104,7 +104,7 @@ const SubscribePopup = ({
                   <div className="border-b border-gray/40 w-full p-1">
                     <Textarea
                       placeholder="Tell us a bit about your project"
-                      className="w-full text-white rounded-none h-24 border-none"
+                      className="w-full text-white text-base rounded-none h-24 border-none"
                       onInput={(e) => setUserData({ ...userData, message: e.currentTarget.value })}
                     />
                   </div>

@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   description: 'Mission Morph is a digital marketing agency in Miami that is set to transform your online presence starting with custom web development, brand design and SEO.',
 }
  
+export const dynamic = 'force-dynamic'
 
 
 const Page = async () => {
@@ -19,6 +20,7 @@ const Page = async () => {
     
     const services = await payload.find({
         collection: 'services',
+        
     })
 
     const blogs = await payload.find({
