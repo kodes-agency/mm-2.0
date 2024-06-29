@@ -29,11 +29,11 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <section className="min-h-screen bg-white flex flex-col">
-      {landing?.docs?.[0]?.layout?.length === 0 ? (
+      {landing.docs[0].contnet && !landing.docs[0].contnet.layout ? (
         <div>404 Not found</div>
       ) : (
         <div>
-          {landing.docs[0].layout?.map((block) => {
+          {landing.docs[0].contnet && landing.docs[0].contnet.layout?.map((block) => {
             return (
               <div key={block.id}>
                 {block.blockType === 'hero' && (

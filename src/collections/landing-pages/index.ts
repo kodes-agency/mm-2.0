@@ -52,6 +52,7 @@ export const LandingPages: CollectionConfig = {
               name: 'layout',
               label: 'Layout',
               type: 'blocks',
+              required: true,
               blocks: [
                 Hero,
                 Text,

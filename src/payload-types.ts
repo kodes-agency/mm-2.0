@@ -105,301 +105,299 @@ export interface Landing {
   title: string;
   slug?: string | null;
   category: string;
-  contnet?: {
-    layout?:
-      | (
-          | {
-              content: {
-                title: string;
-                subtitle: string;
-                label?: string | null;
-                buttonText: string;
-                buttonLink: string;
-                image: string | Media;
-              };
-              style: {
-                style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
-              };
-              id?: string | null;
-              blockName?: string | null;
-              blockType: 'hero';
-            }
-          | {
-              content?: {
-                title?: string | null;
-                text?: {
-                  root: {
-                    type: string;
-                    children: {
-                      type: string;
-                      version: number;
-                      [k: string]: unknown;
-                    }[];
-                    direction: ('ltr' | 'rtl') | null;
-                    format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                    indent: number;
-                    version: number;
-                  };
+  contnet: {
+    layout: (
+      | {
+          content: {
+            title: string;
+            subtitle: string;
+            label?: string | null;
+            buttonText: string;
+            buttonLink: string;
+            image: string | Media;
+          };
+          style: {
+            style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
+          };
+          id?: string | null;
+          blockName?: string | null;
+          blockType: 'hero';
+        }
+      | {
+          content?: {
+            title?: string | null;
+            text?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
                   [k: string]: unknown;
-                } | null;
-                text_html?: string | null;
-              };
-              style: {
-                style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
-              };
-              id?: string | null;
-              blockName?: string | null;
-              blockType: 'text';
-            }
-          | {
-              content: {
-                hasTitle?: ('yes' | 'no') | null;
-                hasButton?: ('yes' | 'no') | null;
-                imagePosition?: ('left' | 'right') | null;
-                title?: string | null;
-                text: {
-                  root: {
-                    type: string;
-                    children: {
-                      type: string;
-                      version: number;
-                      [k: string]: unknown;
-                    }[];
-                    direction: ('ltr' | 'rtl') | null;
-                    format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                    indent: number;
-                    version: number;
-                  };
-                  [k: string]: unknown;
-                };
-                text_html?: string | null;
-                image: string | Media;
-                buttonText?: string | null;
-                buttonLink?: string | null;
-              };
-              style: {
-                style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
-              };
-              id?: string | null;
-              blockName?: string | null;
-              blockType: 'image-text';
-            }
-          | {
-              content: {
-                hasTitle?: ('yes' | 'no') | null;
-                hasSubtitle?: ('yes' | 'no') | null;
-                hasButton?: ('yes' | 'no') | null;
-                title?: string | null;
-                subtitle?: string | null;
-                buttonText?: string | null;
-                buttonUrl?: string | null;
-                statistic: {
-                  prefix?: string | null;
-                  number: string;
-                  suffix?: string | null;
-                  description: string;
-                  id?: string | null;
                 }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
               };
-              style: {
-                style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
-              };
-              id?: string | null;
-              blockName?: string | null;
-              blockType: 'statistics';
-            }
-          | {
-              content?: {
-                hasTitle?: ('yes' | 'no') | null;
-                hasSubtitle?: ('yes' | 'no') | null;
-                title?: string | null;
-                subtitle?: string | null;
-                packages?:
-                  | {
-                      isDiscounted?: ('yes' | 'no') | null;
-                      hasSecondaryButton?: ('yes' | 'no') | null;
-                      isMostPopular?: ('yes' | 'no') | null;
-                      title: string;
-                      description: string;
-                      regularPrice: string;
-                      discountedPrice?: string | null;
-                      priceDetails?: string | null;
-                      primaryButtonText: string;
-                      primaryButtonLink: string;
-                      secondaryButtonText: string;
-                      secondaryButtonLink: string;
-                      features?:
-                        | {
-                            feature: string;
-                            id?: string | null;
-                          }[]
-                        | null;
-                      services?:
-                        | {
-                            service: string;
-                            id?: string | null;
-                          }[]
-                        | null;
-                      id?: string | null;
-                    }[]
-                  | null;
-              };
-              style: {
-                style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
-              };
-              id?: string | null;
-              blockName?: string | null;
-              blockType: 'pricing';
-            }
-          | {
-              content?: {
-                hasTitle?: ('yes' | 'no') | null;
-                hasSubtitle?: ('yes' | 'no') | null;
-                title?: string | null;
-                subtitle?: string | null;
-                faq?: (string | Faq)[] | null;
-              };
-              style: {
-                style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
-              };
-              id?: string | null;
-              blockName?: string | null;
-              blockType: 'faqs';
-            }
-          | {
-              content?: {
-                title?: string | null;
-                highlights?:
-                  | {
-                      icon: string | Media;
-                      title: string;
-                      text?: string | null;
-                      id?: string | null;
-                    }[]
-                  | null;
-              };
-              style: {
-                style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
-              };
-              id?: string | null;
-              blockName?: string | null;
-              blockType: 'highlights';
-            }
-          | {
-              content: {
-                hasTitle?: ('yes' | 'no') | null;
-                hasSubtitle?: ('yes' | 'no') | null;
-                hasButton?: ('yes' | 'no') | null;
-                title?: string | null;
-                subtitle?: {
-                  root: {
-                    type: string;
-                    children: {
-                      type: string;
-                      version: number;
-                      [k: string]: unknown;
-                    }[];
-                    direction: ('ltr' | 'rtl') | null;
-                    format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                    indent: number;
-                    version: number;
-                  };
+              [k: string]: unknown;
+            } | null;
+            text_html?: string | null;
+          };
+          style: {
+            style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
+          };
+          id?: string | null;
+          blockName?: string | null;
+          blockType: 'text';
+        }
+      | {
+          content: {
+            hasTitle?: ('yes' | 'no') | null;
+            hasButton?: ('yes' | 'no') | null;
+            imagePosition?: ('left' | 'right') | null;
+            title?: string | null;
+            text: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
                   [k: string]: unknown;
-                } | null;
-                subtitle_html?: string | null;
-                buttonText?: string | null;
-                buttonUrl?: string | null;
-                services: {
-                  icon?: string | Media | null;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            text_html?: string | null;
+            image: string | Media;
+            buttonText?: string | null;
+            buttonLink?: string | null;
+          };
+          style: {
+            style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
+          };
+          id?: string | null;
+          blockName?: string | null;
+          blockType: 'image-text';
+        }
+      | {
+          content: {
+            hasTitle?: ('yes' | 'no') | null;
+            hasSubtitle?: ('yes' | 'no') | null;
+            hasButton?: ('yes' | 'no') | null;
+            title?: string | null;
+            subtitle?: string | null;
+            buttonText?: string | null;
+            buttonUrl?: string | null;
+            statistic: {
+              prefix?: string | null;
+              number: string;
+              suffix?: string | null;
+              description: string;
+              id?: string | null;
+            }[];
+          };
+          style: {
+            style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
+          };
+          id?: string | null;
+          blockName?: string | null;
+          blockType: 'statistics';
+        }
+      | {
+          content?: {
+            hasTitle?: ('yes' | 'no') | null;
+            hasSubtitle?: ('yes' | 'no') | null;
+            title?: string | null;
+            subtitle?: string | null;
+            packages?:
+              | {
+                  isDiscounted?: ('yes' | 'no') | null;
+                  hasSecondaryButton?: ('yes' | 'no') | null;
+                  isMostPopular?: ('yes' | 'no') | null;
                   title: string;
                   description: string;
+                  regularPrice: string;
+                  discountedPrice?: string | null;
+                  priceDetails?: string | null;
+                  primaryButtonText: string;
+                  primaryButtonLink: string;
+                  secondaryButtonText: string;
+                  secondaryButtonLink: string;
+                  features?:
+                    | {
+                        feature: string;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  services?:
+                    | {
+                        service: string;
+                        id?: string | null;
+                      }[]
+                    | null;
                   id?: string | null;
-                }[];
-              };
-              style: {
-                style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
-              };
-              id?: string | null;
-              blockName?: string | null;
-              blockType: 'services';
-            }
-          | {
-              content: {
-                hasTitle?: ('yes' | 'no') | null;
-                hasSubtitle?: ('yes' | 'no') | null;
-                hasButton?: ('yes' | 'no') | null;
-                title?: string | null;
-                subtitle?: {
-                  root: {
-                    type: string;
-                    children: {
-                      type: string;
-                      version: number;
-                      [k: string]: unknown;
-                    }[];
-                    direction: ('ltr' | 'rtl') | null;
-                    format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                    indent: number;
-                    version: number;
-                  };
-                  [k: string]: unknown;
-                } | null;
-                subtitle_html?: string | null;
-                buttonText?: string | null;
-                buttonUrl?: string | null;
-                steps: {
+                }[]
+              | null;
+          };
+          style: {
+            style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
+          };
+          id?: string | null;
+          blockName?: string | null;
+          blockType: 'pricing';
+        }
+      | {
+          content?: {
+            hasTitle?: ('yes' | 'no') | null;
+            hasSubtitle?: ('yes' | 'no') | null;
+            title?: string | null;
+            subtitle?: string | null;
+            faq?: (string | Faq)[] | null;
+          };
+          style: {
+            style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
+          };
+          id?: string | null;
+          blockName?: string | null;
+          blockType: 'faqs';
+        }
+      | {
+          content?: {
+            title?: string | null;
+            highlights?:
+              | {
+                  icon: string | Media;
                   title: string;
-                  description: string;
+                  text?: string | null;
                   id?: string | null;
+                }[]
+              | null;
+          };
+          style: {
+            style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
+          };
+          id?: string | null;
+          blockName?: string | null;
+          blockType: 'highlights';
+        }
+      | {
+          content: {
+            hasTitle?: ('yes' | 'no') | null;
+            hasSubtitle?: ('yes' | 'no') | null;
+            hasButton?: ('yes' | 'no') | null;
+            title?: string | null;
+            subtitle?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
                 }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
               };
-              style: {
-                style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
-              };
+              [k: string]: unknown;
+            } | null;
+            subtitle_html?: string | null;
+            buttonText?: string | null;
+            buttonUrl?: string | null;
+            services: {
+              icon?: string | Media | null;
+              title: string;
+              description: string;
               id?: string | null;
-              blockName?: string | null;
-              blockType: 'steps';
-            }
-          | {
-              content: {
-                blogs: (string | Blog)[];
+            }[];
+          };
+          style: {
+            style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
+          };
+          id?: string | null;
+          blockName?: string | null;
+          blockType: 'services';
+        }
+      | {
+          content: {
+            hasTitle?: ('yes' | 'no') | null;
+            hasSubtitle?: ('yes' | 'no') | null;
+            hasButton?: ('yes' | 'no') | null;
+            title?: string | null;
+            subtitle?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
               };
-              style: {
-                style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
-              };
+              [k: string]: unknown;
+            } | null;
+            subtitle_html?: string | null;
+            buttonText?: string | null;
+            buttonUrl?: string | null;
+            steps: {
+              title: string;
+              description: string;
               id?: string | null;
-              blockName?: string | null;
-              blockType: 'blog';
-            }
-          | {
-              content: {
-                title: string;
-                text: string;
-                buttonText: string;
-                buttonLink: string;
-                image: string | Media;
-              };
-              style: {
-                style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
-              };
-              id?: string | null;
-              blockName?: string | null;
-              blockType: 'cta';
-            }
-          | {
-              content: {
-                title: string;
-                reveiws: (string | Review)[];
-              };
-              style: {
-                style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
-              };
-              id?: string | null;
-              blockName?: string | null;
-              blockType: 'review';
-            }
-        )[]
-      | null;
+            }[];
+          };
+          style: {
+            style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
+          };
+          id?: string | null;
+          blockName?: string | null;
+          blockType: 'steps';
+        }
+      | {
+          content: {
+            blogs: (string | Blog)[];
+          };
+          style: {
+            style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
+          };
+          id?: string | null;
+          blockName?: string | null;
+          blockType: 'blog';
+        }
+      | {
+          content: {
+            title: string;
+            text: string;
+            buttonText: string;
+            buttonLink: string;
+            image: string | Media;
+          };
+          style: {
+            style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
+          };
+          id?: string | null;
+          blockName?: string | null;
+          blockType: 'cta';
+        }
+      | {
+          content: {
+            title: string;
+            reveiws: (string | Review)[];
+          };
+          style: {
+            style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
+          };
+          id?: string | null;
+          blockName?: string | null;
+          blockType: 'review';
+        }
+    )[];
   };
   seo: {
     metaTitle: string;

@@ -9,16 +9,22 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   const blogs = await payload.find({
     collection: 'blogs',
     where: {
-        slug: {
-            equals: params.slug,
-        }
-    }
+      slug: {
+        equals: params.slug,
+      },
+    },
   })
   return (
-    <div className=" -space-y-px">
-      <Hero blog={blogs.docs[0]}/>
-      <Content blog={blogs.docs[0]}/>
-    </div>
+    <>
+      {blogs?.docs?.length === 0 ? (
+        <div>404 Not found</div>
+      ) : (
+        <div className=" -space-y-px">
+          <Hero blog={blogs.docs[0]} />
+          <Content blog={blogs.docs[0]} />
+        </div>
+      )}
+    </>
   )
 }
 
