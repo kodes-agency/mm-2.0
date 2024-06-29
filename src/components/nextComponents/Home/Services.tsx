@@ -84,7 +84,7 @@ export const Services = ({services} : {services: Service[]}) => {
     })
 
     return (
-        <section ref={sectionRef} className="bg-gradient-to-b from-cyan to-magenta pt-40 pb-20 md:min-h-[60vh] lg:min-h-screen flex flex-col items-center  px-6 md:px-20 relative">
+        <section ref={sectionRef} className="bg-gradient-to-b overflow-hidden from-cyan to-magenta pt-40 pb-20 md:min-h-[60vh] lg:min-h-screen flex flex-col items-center  px-6 md:px-20 relative">
             <div className="flex flex-col space-y-10 lg:space-y-20 max-w-5xl">
                 {/* Heading */}
                 <div className="relative z-10 pr-5 serviceHeading">
