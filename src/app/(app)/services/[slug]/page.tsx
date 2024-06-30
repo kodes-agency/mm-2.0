@@ -8,6 +8,9 @@ import { CTA } from '@/components/nextComponents/Services/CTA'
 import { Blog } from '@/components/nextComponents/Services/Blog'
 import { CTA2 } from '@/components/nextComponents/Services/CTA2'
 
+export const dynamic = 'force-dynamic'
+
+
 const Page = async ({ params }: { params: { slug: string } }) => {
   const payload = await getPayloadHMR({ config: configPromise })
 

@@ -3,6 +3,9 @@ import configPromise from '@payload-config'
 import { Hero } from '@/components/nextComponents/Blog/slug/Hero'
 import { Content } from '@/components/nextComponents/Blog/slug/Content'
 
+export const dynamic = 'force-dynamic'
+
+
 const Page = async ({ params }: { params: { slug: string } }) => {
   const payload = await getPayloadHMR({ config: configPromise })
 
@@ -14,6 +17,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       },
     },
   })
+
   return (
     <>
       {blogs?.docs?.length < 1 ? (

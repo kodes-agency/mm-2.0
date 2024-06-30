@@ -113,7 +113,7 @@ export const Services = ({services} : {services: Service[]}) => {
                             visibleService === service.homePage.buttonText && (
                                 <div key={i} className='flex flex-col space-y-5'>
                                     <p className=" max-w-lg text-light-cyan text-lg">{service.homePage.text}</p>
-                                    <Button text={"Learn more about "+service.homePage.buttonText} style='bg-light-cyan text-dark-purple ring-2 ring-light-purple' link={`/services/${service.slug}`} />
+                                    <Button text={"Learn about "+service.homePage.buttonText} style='bg-light-cyan text-sm whitespace-nowrap text-dark-purple ring-2 ring-light-purple hover:bg-light-purple hover:text-dark-purple hover:ring-dark-purple transition-all duration-300 ' link={`/services/${service.slug}`} />
                                 </div>
                             )
                         ))}
@@ -125,7 +125,6 @@ export const Services = ({services} : {services: Service[]}) => {
                     <div className='relative'>
                         {services.map((service, i) => (
                             <div key={i} className={`absolute right-12 top-20 lg:top-auto md:right-[20%] lg:right-[40%] ${visibleService === service.homePage.buttonText ? "opacity-100" : "opacity-0"} transition-opacity w-64 h-auto md:w-72`}>
-                                    
                                     {
                                         service.homePage["image-bg"] &&
                                         // @ts-expect-error

@@ -36,9 +36,9 @@ export const CTA2 = ({
   return (
     <section ref={sectionRef} className='bg-white flex flex-col items-center space-y-10'>
         <div ref={wrapperRef} style={{backgroundColor: style.highlightColor}} className='w-full py-40 flex flex-col items-center'>
-          <div className='max-w-4xl w-full space-y-10 flex flex-col items-center'>
+          <div className='max-w-4xl w-full space-y-10 flex flex-col items-center p-5 md:p-10'>
               <div className='flex flex-col items-center space-y-5'>
-                <h2 className='text-5xl md:text-6xl lg:text-7xl text-center leading-none text-dark-purple font-black'>
+                <h2 className='text-4xl md:text-5xl lg:text-7xl text-center leading-none text-dark-purple font-black'>
                     {service.servicePage.ctaTitle}
                 </h2>
                 <p className='text-lg text-black font-medium text-center'>

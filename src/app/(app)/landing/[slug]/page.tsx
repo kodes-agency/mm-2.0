@@ -13,7 +13,7 @@ import { CTA } from '@/components/nextComponents/Landing/CTA'
 import { Pricing } from '@/components/nextComponents/Landing/Pricing'
 import { Reviews } from '@/components/nextComponents/Landing/Reviews'
 
-
+export const dynamic = 'force-dynamic'
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const payload = await getPayloadHMR({ config: configPromise })

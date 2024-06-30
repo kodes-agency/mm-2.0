@@ -18,7 +18,7 @@ export const Blog = ({
   const headerRef = useRef<HTMLElement | any>('')
 
   useGSAP(() => {
-    const title = new SplitType(headerRef.current, {
+    const title = new SplitType('.serviceBlogHeadingEl', {
       types: 'lines,words',
       lineClass: 'line',
     })
@@ -43,6 +43,9 @@ export const Blog = ({
       opacity: 0,
       duration: 1,
     })
+    return () => {
+      title.revert()
+    }
   })
 
   return (
@@ -52,7 +55,7 @@ export const Blog = ({
           ref={sectionRef}
           className="bg-white flex flex-col items-center py-40 md:min-h-screen space-y-10 px-5 md:px-10"
         >
-          <h2 ref={headerRef} className="text-5xl max-w-4xl font-bold">
+          <h2 className="serviceBlogHeadingEl text-4xl md:text-5xl max-w-4xl font-bold">
             Our job is to inform <strong style={{ color: style.highlightColor }}>you</strong> about
             industry trends, so you stay ahead of the competition.
           </h2>
