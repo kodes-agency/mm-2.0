@@ -53,7 +53,7 @@ export const Hero = ({ blog }: { blog: Blog }) => {
       </div>
       <Image
         // @ts-expect-error
-        src={blog.image.url} alt={blog.image.alt}
+        src={blog.content.image.url} alt={blog.content.image.alt}
         priority
         width={1024}
         height={750}

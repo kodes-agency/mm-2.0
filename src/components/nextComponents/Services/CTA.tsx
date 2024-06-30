@@ -20,7 +20,6 @@ export const CTA = ({
 }) => {
   const sectionRef = useRef<HTMLElement | any>('')
   const headerRef = useRef<HTMLElement | any>('')
-  const pinnedRef = useRef<HTMLElement | any>('')
   useIsomorphicLayoutEffect(() => {
     gsap.registerPlugin(ScrollToPlugin)
   })

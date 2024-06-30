@@ -151,6 +151,30 @@ export const Services: CollectionConfig = {
                 description: 'Select the blogs that are related to this service.',
               },
               hasMany: true,
+            },
+            {
+              type: 'collapsible',
+              label: 'CTA fields',
+              fields: [
+                {
+                  type: 'text',
+                  name: 'ctaTitle',
+                  label: 'CTA title',
+                  required: true,
+                },
+                {
+                  type: 'textarea',
+                  name: 'ctaDescription',
+                  label: 'CTA description',
+                  required: true,
+                },
+                {
+                  type: 'text',
+                  name: 'ctaButtonText',
+                  label: 'CTA button text',
+                  required: true,
+                },
+              ]
             }
           ],
         },
@@ -199,9 +223,9 @@ export const Services: CollectionConfig = {
               name: 'metaTitle',
               label: 'Meta Title',
               required: true,
-              maxLength: 70,
+              maxLength: 90,
               admin: {
-                description: 'Max 70 characters',
+                description: 'Max 90 characters',
               }
             },
             {
@@ -209,9 +233,9 @@ export const Services: CollectionConfig = {
               name: 'metaDescription',
               label: 'Meta Description',
               required: true,
-              maxLength: 160,
+              maxLength: 200,
               admin: {
-                description: 'Max 160 characters',
+                description: 'Max 200 characters',
               }
             },
           ],

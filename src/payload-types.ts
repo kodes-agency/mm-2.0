@@ -57,6 +57,9 @@ export interface Service {
       | null;
     landing?: (string | Landing)[] | null;
     blogs?: (string | Blog)[] | null;
+    ctaTitle: string;
+    ctaDescription: string;
+    ctaButtonText: string;
   };
   homePage: {
     title: string;
@@ -444,6 +447,7 @@ export interface Blog {
   slug?: string | null;
   content: {
     category: ('important-events' | 'case-studies' | 'web-dev' | 'organic-and-local-seo' | 'brand-design')[];
+    featured: 'true' | 'false';
     description: string;
     image: string | Media;
     content: {

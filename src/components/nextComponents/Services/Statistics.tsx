@@ -30,6 +30,11 @@ export const Statistics = ({
       fontKerning: 'none',
     })
 
+    gsap.set(title.words, {
+      lineHeight: 1.3,
+    }
+    )
+
     gsap.from(title.words, {
       scrollTrigger: {
         trigger: sectionRef.current,

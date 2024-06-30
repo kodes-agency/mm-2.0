@@ -82,7 +82,7 @@ const links = [
 const Footer = () => {
 
   return (
-    <footer className="py-20 pt-40 w-full bg-gradient-to-b from-black to-dark-purple flex items-center justify-center p-5 md:p-10 -mt-px">
+    <footer className="py-20 pt-40 w-full bg-black flex items-center justify-center p-5 md:p-10 -mt-px">
       <div className="max-w-5xl w-full flex flex-col md:flex-row justify-between space-y-4 md:space-y-0">
           {
             links.map((section, index) => (

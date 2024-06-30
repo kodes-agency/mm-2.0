@@ -94,7 +94,7 @@ export const Blog = ({blogs}: {blogs: BlogType[]}) => {
 
 
     return (
-        <section className="bg-black min-h-screen flex flex-col items-center overflow-hidden">
+        <section className="bg-black min-h-screen flex flex-col pb-40 items-center overflow-hidden">
             <div ref={sectionRef} className="relative w-full flex flex-col items-center justify-center h-screen">
                 <Image
                     ref={imgRef}
@@ -110,7 +110,7 @@ export const Blog = ({blogs}: {blogs: BlogType[]}) => {
                     <p ref={textRef} className="text-center font-serif text-white text-xl">{home.blog.text}</p>
                 </div>
             </div>
-            <section className={`py-5 md:py-10 flex flex-col items-center w-full  px-5 md:px-10`}>
+            <section className={`py-10 md:py-20 flex flex-col items-center w-full  px-5 md:px-10`}>
                 <div className="max-w-5xl flex flex-col space-y-20 ">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                     {/* @ts-expect-error */}

@@ -17,7 +17,7 @@ export const Article = ({
         <Link href={`/blog/${blog.slug}`}>
             <div className='grid grid-cols-1 lg:grid-cols-3 justify-center items-center'>
                 {/* @ts-expect-error */}
-                <Image className='object-cover aspect-video w-full lg:aspect-square' src={blog.image.url} alt={blog.image.alt} width={300} height={300}/>
+                <Image className='object-cover aspect-video w-full lg:aspect-square' src={blog.content.image.url} alt={blog.content.image.alt} width={300} height={300}/>
                 <div className={`flex flex-col justify-around h-full lg:col-span-2 pt-4 md:p-4`}>
                     <div className={`${id === 0 ? "space-y-4" : "space-y-2"}`}>
                         <h3 className={` ${id === 0 ? "text-xl lg:text-3xl" : "text-xl lg:text-base"} font-bold`}>{blog.title}</h3>

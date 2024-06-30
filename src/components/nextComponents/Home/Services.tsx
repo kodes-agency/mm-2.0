@@ -6,6 +6,7 @@ import SplitType from 'split-type'
 import { useRef, useState } from 'react'
 import Image from "next/image"
 import { Service } from "@/payload-types.js"
+import { Button } from '@/elements/nextElements/Button'
 
 
 export const Services = ({services} : {services: Service[]}) => {
@@ -109,8 +110,12 @@ export const Services = ({services} : {services: Service[]}) => {
                 {/* Text */}
                     <div className="flex flex-col items-start space-y-5 relative z-10 serviceText">
                         {services.map((service, i) => (
-                            visibleService === service.homePage.buttonText
-                            && <p key={i} className=" max-w-lg text-light-cyan text-lg">{service.homePage.text}</p>
+                            visibleService === service.homePage.buttonText && (
+                                <div className='flex flex-col space-y-5'>
+                                    <p key={i} className=" max-w-lg text-light-cyan text-lg">{service.homePage.text}</p>
+                                    <Button text={"Learn more about "+service.homePage.buttonText} style='bg-light-cyan text-dark-purple ring-2 ring-light-purple' link={`/services/${service.slug}`} />
+                                </div>
+                            )
                         ))}
                     </div>
 

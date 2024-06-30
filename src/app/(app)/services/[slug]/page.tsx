@@ -5,6 +5,8 @@ import { Services } from '@/components/nextComponents/Services/Services'
 import { Statistics } from '@/components/nextComponents/Services/Statistics'
 import { Landings } from '@/components/nextComponents/Services/Landings'
 import { CTA } from '@/components/nextComponents/Services/CTA'
+import { Blog } from '@/components/nextComponents/Services/Blog'
+import { CTA2 } from '@/components/nextComponents/Services/CTA2'
 
 
 const Page = async ({ params }: { params: { slug: string } }) => {
@@ -38,6 +40,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             <Landings service={currentService} style={colors} />
             <CTA service={currentService} style={colors} />
             <Statistics service={currentService} style={colors} />
+            <Blog service={currentService} style={colors} />
+            <CTA2 service={currentService} style={colors} />
         </div>
       )}
     </section>

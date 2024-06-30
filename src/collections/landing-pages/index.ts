@@ -79,9 +79,9 @@ export const LandingPages: CollectionConfig = {
               name: 'metaTitle',
               label: 'Meta Title',
               required: true,
-              maxLength: 70,
+              maxLength: 90,
               admin: {
-                description: 'Max 70 characters',
+                description: 'Max 90 characters',
               }
             },
             {
@@ -89,9 +89,9 @@ export const LandingPages: CollectionConfig = {
               name: 'metaDescription',
               label: 'Meta Description',
               required: true,
-              maxLength: 160,
+              maxLength: 200,
               admin: {
-                description: 'Max 160 characters',
+                description: 'Max 200 characters',
               }
             },
           ],

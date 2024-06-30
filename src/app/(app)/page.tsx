@@ -25,7 +25,13 @@ const Page = async () => {
 
     const blogs = await payload.find({
       collection: 'blogs',
+      where: {
+        'content.featured': {
+            equals: 'true'
+        }
+      }
     })
+
     return (
         <div className=" -space-y-px">
             <Hero />

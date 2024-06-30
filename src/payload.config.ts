@@ -3,6 +3,7 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload/config'
 import { fileURLToPath } from 'url'
+import sharp from 'sharp'
 import { s3Storage } from '@payloadcms/storage-s3'
 import { Users } from './collections/Users'
 import { LandingPages } from './collections/landing-pages'
@@ -24,6 +25,12 @@ export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
+  },
+  
+  upload: {  
+    formatOptions: {
+      format: 'webp',
+    }
   },
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',

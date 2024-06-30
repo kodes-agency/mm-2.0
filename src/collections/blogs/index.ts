@@ -67,6 +67,26 @@ export const Blogs: CollectionConfig = {
               ],
             },
             {
+              name: 'featured',
+              label: 'Featured',
+              type: 'radio',
+              required: true,
+              defaultValue: 'false',
+              admin: {
+                description: 'Featured blogs will be displayed on the homepage',
+              },
+              options: [
+                {
+                  label: 'Yes',
+                  value: 'true',
+                },
+                {
+                  label: 'No',
+                  value: 'false',
+                },
+              ],
+            },
+            {
               type: 'textarea',
               name: 'description',
               label: 'Description',
@@ -106,9 +126,9 @@ export const Blogs: CollectionConfig = {
               name: 'metaTitle',
               label: 'Meta Title',
               required: true,
-              maxLength: 70,
+              maxLength: 90,
               admin: {
-                description: 'Max 70 characters',
+                description: 'Max 90 characters',
               }
             },
             {
@@ -116,9 +136,9 @@ export const Blogs: CollectionConfig = {
               name: 'metaDescription',
               label: 'Meta Description',
               required: true,
-              maxLength: 160,
+              maxLength: 200,
               admin: {
-                description: 'Max 160 characters',
+                description: 'Max 200 characters',
               }
             },
           ],
