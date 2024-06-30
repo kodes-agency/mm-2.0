@@ -111,8 +111,8 @@ export const Services = ({services} : {services: Service[]}) => {
                     <div className="flex flex-col items-start space-y-5 relative z-10 serviceText">
                         {services.map((service, i) => (
                             visibleService === service.homePage.buttonText && (
-                                <div className='flex flex-col space-y-5'>
-                                    <p key={i} className=" max-w-lg text-light-cyan text-lg">{service.homePage.text}</p>
+                                <div key={i} className='flex flex-col space-y-5'>
+                                    <p className=" max-w-lg text-light-cyan text-lg">{service.homePage.text}</p>
                                     <Button text={"Learn more about "+service.homePage.buttonText} style='bg-light-cyan text-dark-purple ring-2 ring-light-purple' link={`/services/${service.slug}`} />
                                 </div>
                             )

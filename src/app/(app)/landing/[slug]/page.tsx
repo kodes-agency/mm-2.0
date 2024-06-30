@@ -70,7 +70,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
                   <Pricing block={block} />
                 )}           
                 {block.blockType === 'review' && (
-                  // @ts-expect-error
+                  // @ts-ignore
                   <Reviews block={block} />
                 )}                                               
               </div>

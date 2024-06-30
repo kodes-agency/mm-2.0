@@ -16,12 +16,11 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   })
   return (
     <>
-      {blogs?.docs?.length === 0 ? (
+      {blogs?.docs?.length < 1 ? (
         <div>404 Not found</div>
       ) : (
         <div className=" -space-y-px">
-          <Hero blog={blogs.docs[0]} />
-          <Content blog={blogs.docs[0]} />
+          <Hero blog={blogs.docs[0]} /> <Content blog={blogs.docs[0]} />
         </div>
       )}
     </>
