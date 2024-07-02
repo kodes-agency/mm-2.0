@@ -23,7 +23,7 @@ export const LandingButton = ({
       {type === 'cta' && (
         <SubscribePopup
         // @ts-ignore
-          hasMessage={ctaHasMessage} hasBudget={ctaHasBudget} openText={buttonText} title={ctaHeading}
+          hasMessage={ctaHasMessage} hasBudget={ctaHasBudget} openText={buttonText} title={ctaHeading} style={`${style}`}
         />
       )}
       {type === 'link' && buttonLink && (
