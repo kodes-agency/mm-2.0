@@ -41,7 +41,7 @@ const SubscribePopup = ({
           {openText}
         </button>
       </DialogTrigger>
-      <DialogContent aria-description='Fill in the from to recieve a detailed report of your business.' className="xl:w-[1152px] max-w-6xl max-h-[1000px] !rounded-sm transition-all duration-500 !bg-black">
+      <DialogContent className="xl:w-[1152px] max-w-6xl max-h-[1000px] !rounded-sm transition-all duration-500 !bg-black">
         <section className="w-full h-full flex flex-col items-center">
           <div className="flex flex-row space-x-4 md:flex-col items-center md:space-x-0 md:space-y-4 mb-5 md:mb-10">
             <Logo fill="white" style="w-8 h-8" />
