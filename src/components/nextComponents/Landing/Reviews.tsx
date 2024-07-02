@@ -49,7 +49,7 @@ export const Reviews = ({ block }: { block: Reviews }) => {
             onMouseLeave={plugin.current.reset}
 
         >
-          <CarouselContent className="max-w-[50vw]">
+          <CarouselContent className="max-w-[90vw] md:max-w-[50vw]">
             {(block.content.reveiws ?? []).map((review, index) => (
               <CarouselItem key={index} className="max-w-[90vw] md:max-w-[50vw]">
                 {/* @ts-expect-error */}
