@@ -10,7 +10,6 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   ignoreBuildErrors: true,
-
 }
 
 export default withPayload(nextConfig)

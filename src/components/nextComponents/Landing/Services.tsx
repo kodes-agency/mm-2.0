@@ -122,6 +122,7 @@ export const Services = ({ block }: { block: Services }) => {
           ctaHasMessage={block.content.ctaHasMessage}
           ctaHasBudget={block.content.ctaHasBudget}
           ctaHeading={block.content.ctaTitle}
+          style='bg-dark-purple text-white rounded-full p-1 w-fit text-sm font-semibold px-5 transition-all duration-300 ring-2 ring-light-purple hover:bg-light-purple hover:text-dark-purple hover:ring-dark-purple'
         />
       )}
     </section>
