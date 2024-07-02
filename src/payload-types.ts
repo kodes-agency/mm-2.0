@@ -114,10 +114,14 @@ export interface Landing {
       | {
           content: {
             title: string;
-            subtitle: string;
             label?: string | null;
+            subtitle: string;
+            buttonType?: ('cta' | 'link') | null;
             buttonText: string;
-            buttonLink: string;
+            ctaTitle?: string | null;
+            ctaHasMessage?: boolean | null;
+            ctaHasBudget?: boolean | null;
+            buttonLink?: string | null;
             image: string | Media;
           };
           style: {
@@ -177,7 +181,11 @@ export interface Landing {
             };
             text_html?: string | null;
             image: string | Media;
-            buttonText?: string | null;
+            buttonType?: ('cta' | 'link') | null;
+            buttonText: string;
+            ctaTitle?: string | null;
+            ctaHasMessage?: boolean | null;
+            ctaHasBudget?: boolean | null;
             buttonLink?: string | null;
           };
           style: {
@@ -194,8 +202,12 @@ export interface Landing {
             hasButton?: ('yes' | 'no') | null;
             title?: string | null;
             subtitle?: string | null;
-            buttonText?: string | null;
-            buttonUrl?: string | null;
+            buttonType?: ('cta' | 'link') | null;
+            buttonText: string;
+            ctaTitle?: string | null;
+            ctaHasMessage?: boolean | null;
+            ctaHasBudget?: boolean | null;
+            buttonLink?: string | null;
             statistic: {
               prefix?: string | null;
               number: string;
@@ -220,17 +232,18 @@ export interface Landing {
             packages?:
               | {
                   isDiscounted?: ('yes' | 'no') | null;
-                  hasSecondaryButton?: ('yes' | 'no') | null;
                   isMostPopular?: ('yes' | 'no') | null;
                   title: string;
                   description: string;
                   regularPrice: string;
                   discountedPrice?: string | null;
                   priceDetails?: string | null;
-                  primaryButtonText: string;
-                  primaryButtonLink: string;
-                  secondaryButtonText: string;
-                  secondaryButtonLink: string;
+                  buttonType?: ('cta' | 'link') | null;
+                  buttonText: string;
+                  ctaTitle?: string | null;
+                  ctaHasMessage?: boolean | null;
+                  ctaHasBudget?: boolean | null;
+                  buttonLink?: string | null;
                   features?:
                     | {
                         feature: string;
@@ -310,8 +323,12 @@ export interface Landing {
               [k: string]: unknown;
             } | null;
             subtitle_html?: string | null;
-            buttonText?: string | null;
-            buttonUrl?: string | null;
+            buttonType?: ('cta' | 'link') | null;
+            buttonText: string;
+            ctaTitle?: string | null;
+            ctaHasMessage?: boolean | null;
+            ctaHasBudget?: boolean | null;
+            buttonLink?: string | null;
             services: {
               icon?: string | Media | null;
               title: string;
@@ -348,8 +365,12 @@ export interface Landing {
               [k: string]: unknown;
             } | null;
             subtitle_html?: string | null;
-            buttonText?: string | null;
-            buttonUrl?: string | null;
+            buttonType?: ('cta' | 'link') | null;
+            buttonText: string;
+            ctaTitle?: string | null;
+            ctaHasMessage?: boolean | null;
+            ctaHasBudget?: boolean | null;
+            buttonLink?: string | null;
             steps: {
               title: string;
               description: string;
@@ -378,8 +399,12 @@ export interface Landing {
           content: {
             title: string;
             text: string;
+            buttonType?: ('cta' | 'link') | null;
             buttonText: string;
-            buttonLink: string;
+            ctaTitle?: string | null;
+            ctaHasMessage?: boolean | null;
+            ctaHasBudget?: boolean | null;
+            buttonLink?: string | null;
             image: string | Media;
           };
           style: {
@@ -446,7 +471,15 @@ export interface Blog {
   title: string;
   slug?: string | null;
   content: {
-    category: ('important-events' | 'case-studies' | 'web-dev' | 'organic-and-local-seo' | 'brand-design')[];
+    category: (
+      | 'important-event'
+      | 'case-studie'
+      | 'web-design'
+      | 'web-dev'
+      | 'organic-seo'
+      | 'local-seo'
+      | 'brand-design'
+    )[];
     featured: 'true' | 'false';
     description: string;
     image: string | Media;

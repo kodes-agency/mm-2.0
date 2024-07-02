@@ -2,6 +2,7 @@ import { Media } from '@/payload-types'
 import Image from 'next/image'
 import { Button } from '../../../elements/nextElements/Button'
 import { getStyle } from '@/functions/styleTheSection';
+import { LandingButton } from '@/elements/nextElements/LandingButton';
 
 
 type ImageText = {
@@ -27,7 +28,11 @@ type ImageText = {
       };
       text_html?: string | null;
       image: string | Media;
-      buttonText?: string | null;
+      buttonType?: ('cta' | 'link') | null;
+      buttonText: string;
+      ctaTitle?: string | null;
+      ctaHasMessage?: boolean | null;
+      ctaHasBudget?: boolean | null;
       buttonLink?: string | null;
     };
     style: {
@@ -50,7 +55,14 @@ export const ImageText = ({ block }: { block: ImageText }) => {
                   <div className='flex flex-col space-y-4' dangerouslySetInnerHTML={{__html: block.content.text_html || ''}}></div>
                   {
                     block.content.hasButton === 'yes' && (
-                        <Button text={block.content.buttonText || ''} link={block.content.buttonLink || ''}></Button>
+                      <LandingButton  
+                        type={block.content.buttonType}
+                        buttonText={block.content.buttonText}
+                        buttonLink={block.content.buttonLink}
+                        ctaHasMessage={block.content.ctaHasMessage}
+                        ctaHasBudget={block.content.ctaHasBudget}
+                        ctaHeading={block.content.ctaTitle}
+                      />
                     )
                   }                
                 </div>

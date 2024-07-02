@@ -1,5 +1,6 @@
-import type { Block } from 'payload/types'
+import type { Block } from 'payload'
 import { styleField } from '@/elements/Style'
+import { landingButton } from '@/elements/LandingButton'
 
 export const CTA: Block = {
   slug: 'cta',
@@ -29,20 +30,83 @@ export const CTA: Block = {
               required: true,
             },
             {
-              type: 'row',
+              type: 'collapsible',
+              label: 'Button',
+              admin: {
+                
+              },
               fields: [
                 {
-                  type: 'text',
+                  name: 'buttonType',
+                  label: 'Button Type',
+                  type: 'radio',
+                  defaultValue: 'cta',
+                  options: [
+                    {
+                      label: 'CTA button',
+                      value: 'cta',
+                    },
+                    {
+                      label: 'Link button',
+                      value: 'link',
+                    },
+                  ],
+                },
+                {
                   name: 'buttonText',
                   label: 'Button Text',
+                  type: 'text',
                   required: true,
                 },
                 {
+                  name: 'ctaTitle',
+                  label: 'CTA Title',
                   type: 'text',
-                  name: 'buttonLink',
-                  label: 'Button URL',
                   required: true,
+                  admin: {
+                    condition: (_, siblingData) => {
+                      return siblingData?.buttonType === 'cta'
+                    }
+                  }
                 },
+                {
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'ctaHasMessage',
+                      label: 'CTA has message field',
+                      type: 'checkbox',
+                      required: true,
+                      admin: {
+                        condition: (_, siblingData) => {
+                          return siblingData?.buttonType === 'cta'
+                        }
+                      }
+                    },
+                    {
+                      name: 'ctaHasBudget',
+                      label: 'CTA has budget field',
+                      type: 'checkbox',
+                      required: true,
+                      admin: {
+                        condition: (_, siblingData) => {
+                          return siblingData?.buttonType === 'cta'
+                        }
+                      }
+                    }
+                  ],
+                },
+                {
+                  name: 'buttonLink',
+                  label: 'Link',
+                  type: 'text',
+                  required: true,
+                  admin: {
+                    condition: (_, siblingData) => {
+                      return siblingData?.buttonType === 'link'
+                    }
+                  }
+                }
               ]
             },
             {

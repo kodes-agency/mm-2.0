@@ -1,47 +1,52 @@
 'use client'
 
 import { Button } from '@/elements/nextElements/Button'
+import { LandingButton } from '@/elements/nextElements/LandingButton'
 import { Media } from '@/payload-types'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 
 type Services = {
   content: {
-    hasTitle?: ('yes' | 'no') | null;
-    hasSubtitle?: ('yes' | 'no') | null;
-    hasButton?: ('yes' | 'no') | null;
-    title?: string | null;
+    hasTitle?: ('yes' | 'no') | null
+    hasSubtitle?: ('yes' | 'no') | null
+    hasButton?: ('yes' | 'no') | null
+    title?: string | null
     subtitle?: {
       root: {
-        type: string;
+        type: string
         children: {
-          type: string;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
-    subtitle_html?: string | null;
-    buttonText?: string | null;
-    buttonUrl?: string | null;
+          type: string
+          version: number
+          [k: string]: unknown
+        }[]
+        direction: ('ltr' | 'rtl') | null
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | ''
+        indent: number
+        version: number
+      }
+      [k: string]: unknown
+    } | null
+    subtitle_html?: string | null
+    buttonType?: ('cta' | 'link') | null
+    buttonText: string
+    ctaTitle?: string | null
+    ctaHasMessage?: boolean | null
+    ctaHasBudget?: boolean | null
+    buttonLink?: string | null
     services: {
-      icon?: string | Media | null;
-      title: string;
-      description: string;
-      id?: string | null;
-    }[];
-  };
+      icon?: string | Media | null
+      title: string
+      description: string
+      id?: string | null
+    }[]
+  }
   style: {
-    style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
-  };
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'services';
+    style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange'
+  }
+  id?: string | null
+  blockName?: string | null
+  blockType: 'services'
 }
 
 export const Services = ({ block }: { block: Services }) => {
@@ -69,7 +74,9 @@ export const Services = ({ block }: { block: Services }) => {
       <div className="flex flex-col max-w-5xl space-y-10">
         <div className="flex flex-col space-y-5 max-w-3xl">
           {block.content.hasTitle === 'yes' && (
-            <h2 className="font-bold text-3xl md:text-4xl text-dark-purple">{block.content.title}</h2>
+            <h2 className="font-bold text-3xl md:text-4xl text-dark-purple">
+              {block.content.title}
+            </h2>
           )}
           {block.content.hasSubtitle === 'yes' && (
             <div
@@ -93,8 +100,9 @@ export const Services = ({ block }: { block: Services }) => {
                 }`}
               key={index}
             >
-              {/*@ts-ignore*/}
-              <Image src={service.icon.url} alt={service.icon.alt}
+              <Image
+                // @ts-ignore
+                src={service.icon.url} alt={service.icon.alt}
                 className="fill-dark-purple w-12"
                 width={60}
                 height={60}
@@ -107,11 +115,14 @@ export const Services = ({ block }: { block: Services }) => {
       </div>
 
       {block.content.hasButton === 'yes' && (
-        <Button
-          text={block.content.buttonText || ''}
-          link={block.content.buttonUrl || ''}
-          style="bg-dark-purple text-white"
-        ></Button>
+        <LandingButton
+          type={block.content.buttonType}
+          buttonText={block.content.buttonText}
+          buttonLink={block.content.buttonLink}
+          ctaHasMessage={block.content.ctaHasMessage}
+          ctaHasBudget={block.content.ctaHasBudget}
+          ctaHeading={block.content.ctaTitle}
+        />
       )}
     </section>
   )

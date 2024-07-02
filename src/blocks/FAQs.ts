@@ -1,4 +1,4 @@
-import type { Block } from 'payload/types'
+import type { Block } from 'payload'
 import { styleField } from '@/elements/Style'
 
 export const FAQs: Block = {

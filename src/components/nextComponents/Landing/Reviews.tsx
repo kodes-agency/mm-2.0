@@ -33,20 +33,15 @@ export const Reviews = ({ block }: { block: Reviews }) => {
     <section
       className={`${getStyle(block.style.style)} flex flex-col items-center justify-around pt-20 pb-10 px-6 md:px-10`}
     >
-      <div className="max-w-6xl w-full space-y-5 flex items-center flex-col">
-          <h2 className="text-4xl lg:text-5xl text-center text-dark-purple font-bold relative z-0">
+      <div className="max-w-5xl w-full flex items-center flex-col">
+          <h2 className="text-4xl lg:text-5xl text-center text-dark-purple font-bold">
             {block.content.title}
           </h2>
         <Carousel 
             className=""
             opts={{
-                breakpoints: {
-                    '(min-width: 1024px)': {
-                        slidesToScroll: 2,
-                    }
-                },
+                slidesToScroll: 1,
                 loop: true,
-                
             }}
             // @ts-ignore
             plugins={[plugin.current]}
@@ -54,13 +49,13 @@ export const Reviews = ({ block }: { block: Reviews }) => {
             onMouseLeave={plugin.current.reset}
 
         >
-          <CarouselContent className="lg:-ml-10">
+          <CarouselContent className="max-w-[50vw]">
             {(block.content.reveiws ?? []).map((review, index) => (
-              <CarouselItem key={index} className="basis-1/1 lg:basis-1/2 max-w-[88vw] lg:w-[15vw] ml-5">
+              <CarouselItem key={index} className="max-w-[90vw] md:max-w-[50vw]">
                 {/* @ts-expect-error */}
                 <ReviewCard text={review.text} name={review.name} title={review.title} style={block.style.style} />
               </CarouselItem>
-            ))}x
+            ))}
           </CarouselContent>
         </Carousel>
       </div>

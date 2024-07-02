@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { LandingButton } from './LandingButton'
 
 type PricingCard = {
   isDiscounted?: ('yes' | 'no') | null
@@ -8,10 +9,12 @@ type PricingCard = {
   description: string
   regularPrice: string
   discountedPrice?: string | null
-  primaryButtonText: string
-  primaryButtonLink: string
-  secondaryButtonText: string
-  secondaryButtonLink: string
+  buttonType?: ('cta' | 'link') | null
+  buttonText: string
+  ctaTitle?: string | null
+  ctaHasMessage?: boolean | null
+  ctaHasBudget?: boolean | null
+  buttonLink?: string | null
   features?:
     | {
         feature: string
@@ -28,19 +31,17 @@ type PricingCard = {
 }
 
 export const PricingCard = ({ pricing }: { pricing: PricingCard }) => {
-  const handleButtonClick = () => {}
-
   return (
     <article
       className={`border border-dark-purple w-[82vw] md:w-[350px]  ${
-        pricing.isMostPopular === "yes" ? 'bg-white' : 'bg-[#F7F7F7]'
+        pricing.isMostPopular === 'yes' ? 'bg-white' : 'bg-[#F7F7F7]'
       } rounded-3xl h-fit box-content`}
     >
       <div className="p-5 lg:p-8 space-y-5">
         <div className="flex flex-col space-y-2">
           <div className="flex justify-between items-center">
             <h2 className="text-2xl text-dark-purple font-bold">{pricing.title}</h2>
-            {pricing.isMostPopular === "yes" && (
+            {pricing.isMostPopular === 'yes' && (
               <p className="bg-light-purple rounded-full py-1 px-2 text-xs text-black whitespace-nowrap font-semibold">
                 Most popular
               </p>
@@ -54,16 +55,14 @@ export const PricingCard = ({ pricing }: { pricing: PricingCard }) => {
           <p className="text-sm opacity-50">{pricing.priceDetails}</p>
         </div>
         <div className="space-y-2">
-          <button className="w-full bg-dark-purple rounded-full text-white py-3 hover:font-bold hover:bg-cyan  transition-all">
-            <a className="h-full py-3 whitespace-nowrap lg:px-16" href={pricing.primaryButtonLink} target="_blank">
-              {pricing.primaryButtonText}
-            </a>
-          </button>
-          {pricing.hasSecondaryButton === "yes" && (
-            <button className="google-book-app w-full underline underline-offset-2 text-dark-purple hover:font-bold  transition-all">
-              {pricing.secondaryButtonText}
-            </button>
-          )}
+          <LandingButton
+            type={pricing.buttonType}
+            buttonText={pricing.buttonText}
+            buttonLink={pricing.buttonLink}
+            ctaHasMessage={pricing.ctaHasMessage}
+            ctaHasBudget={pricing.ctaHasBudget}
+            ctaHeading={pricing.ctaTitle}
+          />
         </div>
       </div>
       <div className="p-8 border-t border-dark-purple rounded-3xl h-full space-y-8">

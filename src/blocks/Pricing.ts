@@ -1,5 +1,6 @@
-import type { Block } from 'payload/types'
+import type { Block } from 'payload'
 import { styleField } from '@/elements/Style'
+import { landingButton } from '@/elements/LandingButton'
 
 export const Pricing: Block = {
   slug: 'pricing',
@@ -96,22 +97,6 @@ export const Pricing: Block = {
                                 ]
                             },
                             {
-                                name: "hasSecondaryButton",
-                                label: "Do you need a secondary button?",
-                                type: "radio",
-                                defaultValue: "yes",
-                                options: [
-                                    {
-                                        label: "Yes",
-                                        value: "yes",
-                                    },
-                                    {
-                                        label: "No",
-                                        value: "no",
-                                    }
-                                ]
-                            },
-                            {
                                 name: "isMostPopular",
                                 label: "Is this the most popular package?",
                                 type: "radio",
@@ -166,41 +151,81 @@ export const Pricing: Block = {
                         label: 'Price Details',
                     },
                     {
-                        type: 'row',
-                        fields: [
+                      type: 'collapsible',
+                      label: 'Button',
+                      fields: [
+                        {
+                          name: 'buttonType',
+                          label: 'Button Type',
+                          type: 'radio',
+                          defaultValue: 'cta',
+                          options: [
                             {
-                                name: 'primaryButtonText',
-                                label: 'Primary Button Text',
-                                type: 'text',
-                                required: true,
+                              label: 'CTA button',
+                              value: 'cta',
                             },
                             {
-                                name: 'primaryButtonLink',
-                                label: 'Primary Button Link',
-                                type: 'text',
-                                required: true,
+                              label: 'Link button',
+                              value: 'link',
                             },
-                        ]
-                    },
-                    {
-                        type: 'row',
-                        admin: {
-                            condition: (_, siblingData) => siblingData.hasSecondaryButton === 'yes',
+                          ],
                         },
-                        fields: [
+                        {
+                          name: 'buttonText',
+                          label: 'Button Text',
+                          type: 'text',
+                          required: true,
+                        },
+                        {
+                          name: 'ctaTitle',
+                          label: 'CTA Title',
+                          type: 'text',
+                          required: true,
+                          admin: {
+                            condition: (_, siblingData) => {
+                              return siblingData?.buttonType === 'cta'
+                            }
+                          }
+                        },
+                        {
+                          type: 'row',
+                          fields: [
                             {
-                                name: 'secondaryButtonText',
-                                label: 'Secondary Button Text',
-                                type: 'text',
-                                required: true,
+                              name: 'ctaHasMessage',
+                              label: 'CTA has message field',
+                              type: 'checkbox',
+                              required: true,
+                              admin: {
+                                condition: (_, siblingData) => {
+                                  return siblingData?.buttonType === 'cta'
+                                }
+                              }
                             },
                             {
-                                name: 'secondaryButtonLink',
-                                label: 'Secondary Button Link',
-                                type: 'text',
-                                required: true,
-                            },
-                        ]
+                              name: 'ctaHasBudget',
+                              label: 'CTA has budget field',
+                              type: 'checkbox',
+                              required: true,
+                              admin: {
+                                condition: (_, siblingData) => {
+                                  return siblingData?.buttonType === 'cta'
+                                }
+                              }
+                            }
+                          ],
+                        },
+                        {
+                          name: 'buttonLink',
+                          label: 'Link',
+                          type: 'text',
+                          required: true,
+                          admin: {
+                            condition: (_, siblingData) => {
+                              return siblingData?.buttonType === 'link'
+                            }
+                          }
+                        }
+                      ]
                     },
                     {
                         name: 'features',

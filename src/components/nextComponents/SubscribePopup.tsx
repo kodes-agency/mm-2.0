@@ -8,6 +8,7 @@ import { Logo, Name } from '@/elements/nextElements/SVGs'
 import Link from 'next/link'
 import { useState } from 'react'
 import { subscribe } from '@/functions/actions'
+import { DialogTitle } from '@radix-ui/react-dialog'
 
 const SubscribePopup = ({
   openText,
@@ -36,11 +37,11 @@ const SubscribePopup = ({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className={`${style} uppercase rounded-full p-2 w-fit text-sm font-semibold px-5`}>
+        <button className={`${style} uppercase rounded-full p-2 w-fit text-sm font-semibold px-5 transition-all duration-300`}>
           {openText}
         </button>
       </DialogTrigger>
-      <DialogContent className="xl:w-[1152px] max-w-6xl max-h-[1000px] !rounded-sm transition-all duration-500">
+      <DialogContent aria-description='Fill in the from to recieve a detailed report of your business.' className="xl:w-[1152px] max-w-6xl max-h-[1000px] !rounded-sm transition-all duration-500 !bg-black">
         <section className="w-full h-full flex flex-col items-center">
           <div className="flex flex-row space-x-4 md:flex-col items-center md:space-x-0 md:space-y-4 mb-5 md:mb-10">
             <Logo fill="white" style="w-8 h-8" />
@@ -58,15 +59,13 @@ const SubscribePopup = ({
           )}
           {!isFormSubmitted && (
             <div className="w-full h-full flex flex-col items-center">
-              <div>
-                {title && <h2 className="text-gray mb-3 md:mb-5 text-center text-xl ">{title}</h2>}
-              </div>
+              <DialogTitle className='text-gray mb-3 md:mb-5 text-center text-xl'>{title}</DialogTitle>
               <div className="flex w-full">
                 <div className="border-y border-gray/40 w-1/2 p-1">
                   <Input
                     type="email"
                     placeholder="Email"
-                    className="w-full text-white text-base h-24 rounded-none border-none"
+                    className="w-full text-white !bg-black text-base h-24 rounded-none border-none"
                     onInput={(e) => setUserData({ ...userData, email: e.currentTarget.value })}
                   />
                 </div>
@@ -75,7 +74,7 @@ const SubscribePopup = ({
                   <Input
                     type="text"
                     placeholder="Phone number"
-                    className="w-full text-white text-base rounded-none h-24 border-none"
+                    className="w-full text-white !bg-black text-base rounded-none h-24 border-none"
                     onInput={(e) => setUserData({ ...userData, phone: e.currentTarget.value })}
                   />
                 </div>
@@ -85,7 +84,7 @@ const SubscribePopup = ({
                   <Input
                     type="text"
                     placeholder="Name"
-                    className="w-full text-white text-base h-24 rounded-none border-none"
+                    className="w-full text-white !bg-black text-base h-24 rounded-none border-none"
                     onInput={(e) => setUserData({ ...userData, name: e.currentTarget.value })}
                   />
                 </div>
@@ -94,7 +93,7 @@ const SubscribePopup = ({
                   <Input
                     type="text"
                     placeholder="Company name"
-                    className="w-full text-white text-base rounded-none h-24 border-none"
+                    className="w-full text-white !bg-black text-base rounded-none h-24 border-none"
                     onInput={(e) => setUserData({ ...userData, company: e.currentTarget.value })}
                   />
                 </div>
@@ -104,7 +103,7 @@ const SubscribePopup = ({
                   <div className="border-b border-gray/40 w-full p-1">
                     <Textarea
                       placeholder="Tell us a bit about your project"
-                      className="w-full text-white text-base rounded-none h-24 border-none"
+                      className="w-full text-white !bg-black text-base rounded-none h-24 border-none"
                       onInput={(e) => setUserData({ ...userData, message: e.currentTarget.value })}
                     />
                   </div>

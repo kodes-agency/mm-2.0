@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload/types'
+import type { CollectionConfig } from 'payload'
 import {
   HTMLConverterFeature,
   HeadingFeature,
@@ -45,20 +45,28 @@ export const Blogs: CollectionConfig = {
               hasMany: true,
               options: [
                 {
-                  label: 'Important events',
-                  value: 'important-events',
+                  label: 'Important event',
+                  value: 'important-event',
                 },
                 {
-                  label: 'Case studies',
-                  value: 'case-studies',
+                  label: 'Case studie',
+                  value: 'case-studie',
                 },
                 {
-                  label: 'Web Design & Development',
+                  label: 'Web Design',
+                  value: 'web-design',
+                },
+                {
+                  label: 'Web Dev',
                   value: 'web-dev',
                 },
                 {
-                  label: 'Organic & Local SEO',
-                  value: 'organic-and-local-seo',
+                  label: 'Organic SEO',
+                  value: 'organic-seo',
+                },
+                {
+                  label: 'Local SEO',
+                  value: 'local-seo',
                 },
                 {
                   label: 'Brand design',

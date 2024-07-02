@@ -1,4 +1,4 @@
-import type { Field, FieldHook } from "payload/types";
+import type { Field, FieldHook } from "payload";
 // import formatSlug from "../utilities/formatSlug";
 export const slugField: Field = {
   name: "slug",

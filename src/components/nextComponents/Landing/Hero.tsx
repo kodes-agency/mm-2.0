@@ -4,14 +4,19 @@ import Link from 'next/link'
 import { Button } from '../../../elements/nextElements/Button'
 import { getStyle } from '@/functions/styleTheSection'
 import { Logo } from '@/elements/nextElements/SVGs'
+import { LandingButton } from '@/elements/nextElements/LandingButton'
 
 type Hero = {
     content: {
       title: string;
       subtitle: string;
       label?: string | null;
+      buttonType?: ('cta' | 'link') | null;
       buttonText: string;
-      buttonLink: string;
+      ctaTitle?: string | null;
+      ctaHasMessage?: boolean | null;
+      ctaHasBudget?: boolean | null;
+      buttonLink?: string | null;
       image: string | Media;
     };
     style: {
@@ -23,6 +28,7 @@ type Hero = {
   }
 
 export const Hero = ({ block }: { block: Hero }) => {
+  console.log()
   return (
         <section className={`${getStyle(block.style?.style)} flex md:items-center overflow-hidden items-start md:min-h-[90vh] pt-20 pb-20 justify-center px-6 md:px-10`}>
             <div className='max-w-6xl flex flex-col-reverse md:flex-row items-center'>
@@ -30,10 +36,18 @@ export const Hero = ({ block }: { block: Hero }) => {
                     <p className=' text-lg font-bold uppercase pb-5'>{block.content.label}</p>
                     <h1 className='font-medium text-4xl md:text-5xl pl-2 md:pl-5'>{block.content.title}</h1>
                     <p className='pb-5 text-lg pl-2 md:pl-5'>{block.content.subtitle}</p>
-                    <Button text={block.content.buttonText} link={block.content.buttonLink}></Button>
+                    <LandingButton  
+                      type={block.content.buttonType}
+                      buttonText={block.content.buttonText}
+                      buttonLink={block.content.buttonLink}
+                      ctaHasMessage={block.content.ctaHasMessage}
+                      ctaHasBudget={block.content.ctaHasBudget}
+                      ctaHeading={block.content.ctaTitle}
+                    />
                 </div>
                 <div className='w-full md:w-[50%] xl:w-[65%] md:pl-10 lg:pl-20 relative'>
                     <Image 
+                        priority
                         src={typeof block.content.image === 'string' ? block.content.image : block.content.image.url ?? ''}
                         alt={typeof block.content.image === 'string' ? '' : block.content.image.alt} 
                         width="1080"

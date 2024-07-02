@@ -54,7 +54,7 @@ const Header = ({ services }: { services: Service[] }) => {
                 hasBudget
                 hasMessage
                 title="Request a quote"
-                openText="get a qoate"
+                openText="get a quote"
               />
             )
           }

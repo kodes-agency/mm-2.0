@@ -6,7 +6,6 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel'
 import { PricingCard } from '@/elements/nextElements/PricingCard'
-import { getStyle } from '@/functions/styleTheSection'
 
 type Pricing = {
   content?: {
@@ -23,10 +22,12 @@ type Pricing = {
           description: string
           regularPrice: string
           discountedPrice?: string | null
-          primaryButtonText: string
-          primaryButtonLink: string
-          secondaryButtonText: string
-          secondaryButtonLink: string
+          buttonType?: ('cta' | 'link') | null;
+          buttonText: string;
+          ctaTitle?: string | null;
+          ctaHasMessage?: boolean | null;
+          ctaHasBudget?: boolean | null;
+          buttonLink?: string | null;
           features?:
             | {
                 feature: string
@@ -71,8 +72,8 @@ export const Pricing = ({ block }: { block: Pricing }) => {
                     </CarouselItem>
                 ))}
             </CarouselContent>
-            <CarouselPrevious className='left-1/2 -ml-10 -translate-x-1/2 -top-10 border border-dark-purple' />
-            <CarouselNext className='right-1/2 -mr-10 translate-x-1/2 -top-10 border border-dark-purple' />
+            <CarouselPrevious className='left-1/2 -ml-10 -translate-x-1/2 -top-10 border text-white border-dark-purple' />
+            <CarouselNext className='right-1/2 -mr-10 translate-x-1/2 -top-10 border text-white border-dark-purple' />
         </Carousel>
         </div>
     </section>

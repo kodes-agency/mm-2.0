@@ -59,7 +59,7 @@ export const Statistics = ({
         ref={headerRef}
         className="serviceStatsHeaderEl text-black text-4xl md:text-7xl md:text-center max-w-4xl font-bold"
       >
-        Here are the industry numbers that
+        Here are the industry numbers that {' '}
         <strong className="font-black" style={{ color: style.highlightColor }}>
           matter:
         </strong>

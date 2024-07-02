@@ -48,10 +48,12 @@ export const Archive = ({ faq }: { faq: Faq[] }) => {
                   value={`value-${faq.question}`}
                   className="border-4 border-light-purple rounded-3xl px-4 md:px-10"
                 >
-                  <AccordionTrigger className="text-start">{faq.question}</AccordionTrigger>
+                  <AccordionTrigger className="text-start font-bold">{faq.question}</AccordionTrigger>
                   <AccordionContent>
                     <div
-                      className="         
+                      className="  
+                      data-[state=open]:bg-white
+                      data-[state=closed]:bg-gray       
                     space-y-3
                     [&_h3]:font-bold [&_h3]:text-2xl
                     [&_h4]:font-bold [&_h4]:text-xl

@@ -1,5 +1,5 @@
-import type { CollectionConfig } from 'payload/types'
-import type { FieldHook } from 'payload/types'
+import type { CollectionConfig } from 'payload'
+import type { FieldHook } from 'payload'
 
 export const Services: CollectionConfig = {
   slug: 'services',

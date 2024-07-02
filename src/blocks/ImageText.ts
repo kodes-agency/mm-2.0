@@ -1,6 +1,7 @@
-import type { Block } from 'payload/types'
+import type { Block } from 'payload'
 import { styleField } from '@/elements/Style'
 import { HTMLConverterFeature, lexicalEditor, lexicalHTML } from '@payloadcms/richtext-lexical'
+import { landingButton } from '@/elements/LandingButton'
 
 export const ImageText: Block = {
   slug: 'image-text',
@@ -8,7 +9,7 @@ export const ImageText: Block = {
     singular: 'Image Text',
     plural: 'Image Texts',
   },
-  imageURL: '/api/media/file/thumbnail.png',
+  imageURL: '/media/Image-text-section.png',
   fields: [
     {
       type: 'tabs',
@@ -96,23 +97,85 @@ export const ImageText: Block = {
               required: true,
             },
             {
-              type: 'row',
+              type: 'collapsible',
+              label: 'Button',
               admin: {
                 condition: (_, siblingData) => siblingData.hasButton === 'yes',
               },
               fields: [
                 {
+                  name: 'buttonType',
+                  label: 'Button Type',
+                  type: 'radio',
+                  defaultValue: 'cta',
+                  options: [
+                    {
+                      label: 'CTA button',
+                      value: 'cta',
+                    },
+                    {
+                      label: 'Link button',
+                      value: 'link',
+                    },
+                  ],
+                },
+                {
                   name: 'buttonText',
                   label: 'Button Text',
                   type: 'text',
+                  required: true,
+                },
+                {
+                  name: 'ctaTitle',
+                  label: 'CTA Title',
+                  type: 'text',
+                  required: true,
+                  admin: {
+                    condition: (_, siblingData) => {
+                      return siblingData?.buttonType === 'cta'
+                    }
+                  }
+                },
+                {
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'ctaHasMessage',
+                      label: 'CTA has message field',
+                      type: 'checkbox',
+                      required: true,
+                      admin: {
+                        condition: (_, siblingData) => {
+                          return siblingData?.buttonType === 'cta'
+                        }
+                      }
+                    },
+                    {
+                      name: 'ctaHasBudget',
+                      label: 'CTA has budget field',
+                      type: 'checkbox',
+                      required: true,
+                      admin: {
+                        condition: (_, siblingData) => {
+                          return siblingData?.buttonType === 'cta'
+                        }
+                      }
+                    }
+                  ],
                 },
                 {
                   name: 'buttonLink',
-                  label: 'Button Link',
+                  label: 'Link',
                   type: 'text',
-                },
-              ],
-            },
+                  required: true,
+                  admin: {
+                    condition: (_, siblingData) => {
+                      return siblingData?.buttonType === 'link'
+                    }
+                  }
+                }
+              ]
+            }
           ],
         },
         {

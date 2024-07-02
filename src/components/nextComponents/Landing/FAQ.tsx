@@ -58,7 +58,7 @@ export const FAQ = ({ block }: { block: FAQs }) => {
               value={`value-${index}`}
               className="border-4 border-light-purple rounded-3xl px-4 md:px-10"
             >
-              <AccordionTrigger className='text-start'>{faq.question}</AccordionTrigger>
+              <AccordionTrigger className='text-start font-bold'>{faq.question}</AccordionTrigger>
               <AccordionContent>
                 <div
                   className="         

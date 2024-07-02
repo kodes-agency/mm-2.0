@@ -1,5 +1,6 @@
-import type { Block } from 'payload/types'
+import type { Block } from 'payload'
 import { styleField } from '@/elements/Style'
+import { landingButton } from '@/elements/LandingButton'
 
 export const Hero: Block = {
   slug: 'hero',
@@ -17,38 +18,112 @@ export const Hero: Block = {
           name: 'content',
           fields: [
             {
-              name: 'title',
-              label: 'Title',
-              type: 'text',
-              required: true,
+              type: 'row',
+              fields: [
+                {
+                  name: 'title',
+                  label: 'Title',
+                  type: 'text',
+                  required: true,
+                  admin: {
+                    width: '75%'
+                  }
+                },
+                {
+                  name: 'label',
+                  label: 'Label',
+                  type: 'text',
+                  admin: {
+                    width: '25%'
+                  }
+                },
+              ]
             },
             {
               name: 'subtitle',
               label: 'Subtitle',
-              type: 'text',
+              type: 'textarea',
               required: true,
             },
             {
-              name: 'label',
-              label: 'Label',
-              type: 'text',
-            },
-            {
-              type: 'row',
+              type: 'collapsible',
+              label: 'Button',
+              admin: {
+                
+              },
               fields: [
                 {
+                  name: 'buttonType',
+                  label: 'Button Type',
+                  type: 'radio',
+                  defaultValue: 'cta',
+                  options: [
+                    {
+                      label: 'CTA button',
+                      value: 'cta',
+                    },
+                    {
+                      label: 'Link button',
+                      value: 'link',
+                    },
+                  ],
+                },
+                {
                   name: 'buttonText',
-                  type: 'text',
                   label: 'Button Text',
+                  type: 'text',
                   required: true,
+                },
+                {
+                  name: 'ctaTitle',
+                  label: 'CTA Title',
+                  type: 'text',
+                  required: true,
+                  admin: {
+                    condition: (_, siblingData) => {
+                      return siblingData?.buttonType === 'cta'
+                    }
+                  }
+                },
+                {
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'ctaHasMessage',
+                      label: 'CTA has message field',
+                      type: 'checkbox',
+                      required: true,
+                      admin: {
+                        condition: (_, siblingData) => {
+                          return siblingData?.buttonType === 'cta'
+                        }
+                      }
+                    },
+                    {
+                      name: 'ctaHasBudget',
+                      label: 'CTA has budget field',
+                      type: 'checkbox',
+                      required: true,
+                      admin: {
+                        condition: (_, siblingData) => {
+                          return siblingData?.buttonType === 'cta'
+                        }
+                      }
+                    }
+                  ],
                 },
                 {
                   name: 'buttonLink',
+                  label: 'Link',
                   type: 'text',
-                  label: 'Button Link',
                   required: true,
-                },
-              ],
+                  admin: {
+                    condition: (_, siblingData) => {
+                      return siblingData?.buttonType === 'link'
+                    }
+                  }
+                }
+              ]
             },
             {
               name: 'image',

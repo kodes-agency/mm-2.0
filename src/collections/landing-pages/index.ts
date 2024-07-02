@@ -11,7 +11,7 @@ import { Statistics } from '@/blocks/Statistics'
 import { Steps } from '@/blocks/Steps'
 import { Text } from '@/blocks/Text'
 import { slugField } from '@/elements/Slug'
-import type { CollectionConfig } from 'payload/types'
+import type { CollectionConfig } from 'payload'
 
 export const LandingPages: CollectionConfig = {
   slug: 'landing',
