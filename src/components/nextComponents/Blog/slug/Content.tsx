@@ -35,7 +35,7 @@ export const Content = ({ blog }: { blog: Blog }) => {
   }
 
   return (
-    <article className="flex flex-col items-center pb-20 px-5 bg-white space-y-10 md:space-y-0">
+    <article className="flex flex-col items-center pb-40 px-5 bg-white space-y-10 md:space-y-0">
       <nav className="md:sticky md:top-32 md:pt-3 md:left-0 w-full md:h-0">
         <div className="flex flex-col md:ml-[2vw] lg:ml-[8vw] pt-2 md:max-w-[20vw] lg:max-w-[15vw]">
           <h3 className="font-bold">Main topics:</h3>

@@ -499,6 +499,15 @@ export interface Blog {
       [k: string]: unknown;
     };
     content_html?: string | null;
+    ctaHeading?: string | null;
+    ctaDescription?: string | null;
+    buttonType?: ('cta' | 'link') | null;
+    buttonText: string;
+    ctaTitle?: string | null;
+    ctaHasMessage?: boolean | null;
+    ctaHasBudget?: boolean | null;
+    buttonLink?: string | null;
+    relatedBlogs?: (string | Blog)[] | null;
   };
   seo: {
     metaTitle: string;

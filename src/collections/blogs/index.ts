@@ -122,7 +122,107 @@ export const Blogs: CollectionConfig = {
                 ],
               }),
             },
-            lexicalHTML('content', { name: 'content_html' })
+            lexicalHTML('content', { name: 'content_html' }),
+            {
+              type: 'collapsible',
+              label: 'CTA',
+              fields: [
+                {
+                  type: 'text',
+                  name: 'ctaHeading',
+                  label: 'CTA Title',
+                },
+                {
+                  type: 'textarea',
+                  name: 'ctaDescription',
+                  label: 'CTA Description',
+                },
+                {
+                  type: 'collapsible',
+                  label: 'Button',
+                  fields: [
+                    {
+                      name: 'buttonType',
+                      label: 'Button Type',
+                      type: 'radio',
+                      defaultValue: 'cta',
+                      options: [
+                        {
+                          label: 'CTA button',
+                          value: 'cta',
+                        },
+                        {
+                          label: 'Link button',
+                          value: 'link',
+                        },
+                      ],
+                    },
+                    {
+                      name: 'buttonText',
+                      label: 'Button Text',
+                      type: 'text',
+                      required: true,
+                    },
+                    {
+                      name: 'ctaTitle',
+                      label: 'CTA Title',
+                      type: 'text',
+                      required: true,
+                      admin: {
+                        condition: (_, siblingData) => {
+                          return siblingData?.buttonType === 'cta'
+                        }
+                      }
+                    },
+                    {
+                      type: 'row',
+                      fields: [
+                        {
+                          name: 'ctaHasMessage',
+                          label: 'CTA has message field',
+                          type: 'checkbox',
+                          required: true,
+                          admin: {
+                            condition: (_, siblingData) => {
+                              return siblingData?.buttonType === 'cta'
+                            }
+                          }
+                        },
+                        {
+                          name: 'ctaHasBudget',
+                          label: 'CTA has budget field',
+                          type: 'checkbox',
+                          required: true,
+                          admin: {
+                            condition: (_, siblingData) => {
+                              return siblingData?.buttonType === 'cta'
+                            }
+                          }
+                        }
+                      ],
+                    },
+                    {
+                      name: 'buttonLink',
+                      label: 'Link',
+                      type: 'text',
+                      required: true,
+                      admin: {
+                        condition: (_, siblingData) => {
+                          return siblingData?.buttonType === 'link'
+                        }
+                      }
+                    }
+                  ]
+                },
+              ]
+            },
+            {
+              type: 'relationship',
+              name: 'relatedBlogs',
+              label: 'Related Blogs',
+              hasMany: true,
+              relationTo: 'blogs',
+            }
           ],
         },
         {

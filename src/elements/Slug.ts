@@ -5,12 +5,9 @@ export const slugField: Field = {
   label: "Slug",
   type: "text",
   index: true,
-  admin: {
-    readOnly: true,
-  },
   hooks: {
     beforeValidate: [({data, value, operation}): FieldHook => {
-      if(operation === 'create' || operation === "update") {
+      if(operation === 'create') {
           // @ts-expect-error
           return value = data.title
             .replace(/ /g, '-')
