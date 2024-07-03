@@ -7,6 +7,33 @@ import { Landings } from '@/components/nextComponents/Services/Landings'
 import { CTA } from '@/components/nextComponents/Services/CTA'
 import { Blog } from '@/components/nextComponents/Services/Blog'
 import { CTA2 } from '@/components/nextComponents/Services/CTA2'
+import type { Metadata } from 'next'
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
+
+export async function generateMetadata(
+  { params }: {params: Params},
+): Promise<Metadata> {
+  // read route params
+  const slug = params.slug
+ 
+  // fetch data
+  const payload = await getPayloadHMR({ config: configPromise })
+
+  const meta = await payload.find({
+    collection: 'services',
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+  })
+ 
+ 
+  return {
+    title: meta.docs[0].seo.metaTitle,
+    description: meta.docs[0].seo.metaDescription,
+  }
+}
 
 export const dynamic = 'force-dynamic'
 

@@ -12,6 +12,33 @@ import { Blogs } from '@/components/nextComponents/Landing/Blogs'
 import { CTA } from '@/components/nextComponents/Landing/CTA'
 import { Pricing } from '@/components/nextComponents/Landing/Pricing'
 import { Reviews } from '@/components/nextComponents/Landing/Reviews'
+import type { Metadata } from 'next'
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
+
+export async function generateMetadata(
+  { params }: {params: Params},
+): Promise<Metadata> {
+  // read route params
+  const slug = params.slug
+ 
+  // fetch data
+  const payload = await getPayloadHMR({ config: configPromise })
+
+  const meta = await payload.find({
+    collection: 'landing',
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+  })
+ 
+ 
+  return {
+    title: meta.docs[0].seo.metaTitle,
+    description: meta.docs[0].seo.metaDescription,
+  }
+}
 
 export const dynamic = 'force-dynamic'
 

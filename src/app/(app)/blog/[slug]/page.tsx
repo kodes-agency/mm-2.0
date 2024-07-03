@@ -4,6 +4,34 @@ import { Hero } from '@/components/nextComponents/Blog/slug/Hero'
 import { Content } from '@/components/nextComponents/Blog/slug/Content'
 import { CTA } from '@/components/nextComponents/Blog/slug/CTA'
 import { Blogs } from '@/components/nextComponents/Blog/slug/Blogs'
+import type { Metadata } from 'next'
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
+
+export async function generateMetadata(
+  { params }: {params: Params},
+): Promise<Metadata> {
+  // read route params
+  const slug = params.slug
+ 
+  // fetch data
+  const payload = await getPayloadHMR({ config: configPromise })
+
+  const blogs = await payload.find({
+    collection: 'blogs',
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+  })
+ 
+ 
+  return {
+    title: blogs.docs[0].seo.metaTitle,
+    description: blogs.docs[0].seo.metaDescription,
+  }
+}
+
 
 export const dynamic = 'force-dynamic'
 
@@ -21,7 +49,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   })
 
   return (
-    <>2
+    <>
       {blogs?.docs?.length < 1 ? (
         <div>404 Not found</div>
       ) : (
