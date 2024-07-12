@@ -102,7 +102,7 @@ export const Landings = ({
                     <Button
                       text="Read More"
                       // @ts-expect-error
-                      link={'/landing/' + land.slug}
+                      link={'/landing/' + land.uri}
                       style="bg-white text-black hover:bg-black hover:text-white hover:ring-4 hover:ring-white transition-all duration-300"
                     />
                   </div>

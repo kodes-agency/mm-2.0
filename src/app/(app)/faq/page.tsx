@@ -15,6 +15,8 @@ const Page = async () => {
     const payload = await getPayloadHMR({ config: configPromise })
     const faqs = await payload.find({
         collection: 'faqs',
+        pagination: false,
+        sort: 'createdAt',
     })
 
     return (

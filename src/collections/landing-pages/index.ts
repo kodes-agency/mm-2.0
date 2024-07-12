@@ -11,7 +11,7 @@ import { Statistics } from '@/blocks/Statistics'
 import { Steps } from '@/blocks/Steps'
 import { Text } from '@/blocks/Text'
 import { slugField } from '@/elements/Slug'
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, FieldHook } from 'payload'
 
 export const LandingPages: CollectionConfig = {
   slug: 'landing',
@@ -32,7 +32,28 @@ export const LandingPages: CollectionConfig = {
           type: 'text',
           required: true,
         },
-        slugField,
+        {
+          name: "uri",
+          label: "Slug",
+          type: "text",
+          index: true,
+          // admin: {
+          //   readOnly: true,
+          // },
+          hooks: {
+            beforeValidate: [({data, value, operation}): FieldHook => {
+              if(operation === 'create') {
+                  // @ts-expect-error
+                  return value = data.title
+                    .replace(/ /g, '-')
+                    .replace(/[^\w-]+/g, '')
+                    .toLowerCase()
+              } else {
+                  return value
+              }
+            }],
+          },
+        },
         {
           name: 'category',
           label: 'Category',

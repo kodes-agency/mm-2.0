@@ -27,7 +27,7 @@ export async function generateMetadata(
   const meta = await payload.find({
     collection: 'landing',
     where: {
-      slug: {
+      uri: {
         equals: slug,
       },
     },
@@ -47,12 +47,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   const landing = await payload.find({
     collection: 'landing',
-    where: {
-      slug: {
-        equals: params.slug,
-      },
-    },
   })
+
 
   return (
     <section className="min-h-screen bg-white flex flex-col">

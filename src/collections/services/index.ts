@@ -25,13 +25,10 @@ export const Services: CollectionConfig = {
           label: 'Slug',
           type: 'text',
           index: true,
-          admin: {
-            readOnly: true,
-          },
           hooks: {
             beforeValidate: [
               async ({ data, value, operation }): Promise<FieldHook> => {
-                if (operation === 'create' || operation === 'update') {
+                if (operation === 'create') {
                   // @ts-expect-error
                   return (value = await data.label
                     .replace(/ /g, '-')

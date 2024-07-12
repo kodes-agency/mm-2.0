@@ -28,7 +28,6 @@ type Hero = {
   }
 
 export const Hero = ({ block }: { block: Hero }) => {
-  console.log()
   return (
         <section className={`${getStyle(block.style?.style)} flex md:items-center overflow-hidden items-start md:min-h-[90vh] pt-20 pb-20 justify-center px-6 md:px-10`}>
             <div className='max-w-6xl flex flex-col-reverse md:flex-row items-center'>

@@ -59,7 +59,7 @@ export const Pricing = ({ block }: { block: Pricing }) => {
     >
         <div className='max-w-6xl w-full space-y-5 flex items-center flex-col'>
           {block.content?.hasTitle === 'yes' && (
-            <h2 className='text-5xl text-center text-dark-purple font-bold'>{block.content?.title}</h2>
+            <h2 className='text-4xl md:text-5xl text-center text-dark-purple font-bold'>{block.content?.title}</h2>
           )}
           {block.content?.hasSubtitle === 'yes' && (
             <p className='text-xl max-w-3xl text-center text-dark-purple pb-20'>{block.content?.subtitle}</p>

@@ -23,7 +23,7 @@ export const Blogs = ({ block }: { block: Blogs }) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* @ts-expect-error */}
           {block.content.blogs.map((blog: Blog, id) => (
-            <Article key={blog.id} blog={blog} id={id}/>
+            <Article key={blog.id} blog={blog} id={id} style="flex [&_a]:bg-transparent [&_a:hover]:bg-transparent flex-col items-center justify-center [&_h3]:text-light-purple [&_p]:text-white bg-dark-purple bg-opacity-20 hover:bg-black hover:bg-opacity-70 transition-all duration-300 p-5 [&_a:hover]:ring-0 "/>
           ))}
         </div>
       </div>

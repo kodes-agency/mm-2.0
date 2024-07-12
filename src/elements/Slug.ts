@@ -5,6 +5,9 @@ export const slugField: Field = {
   label: "Slug",
   type: "text",
   index: true,
+  admin: {
+    readOnly: false,
+  },
   hooks: {
     beforeValidate: [({data, value, operation}): FieldHook => {
       if(operation === 'create') {

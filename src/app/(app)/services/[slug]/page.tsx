@@ -46,6 +46,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     where: {
       slug: {
         equals: params.slug,
+        
       },
     },
   })

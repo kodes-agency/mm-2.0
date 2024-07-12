@@ -9,14 +9,16 @@ export const metadata: Metadata = {
   description: 'Insider tips and expert insights about Web development, Branding & Design and SEO are shared in The Morph Chronicles blog that reshapes the digital realm.',
 }
 
-export const dynamic = 'force-dynamic'
+// export const dynamic = 'force-dynamic'
 
 const Page = async () => {
-    const payload = await getPayloadHMR({ config: configPromise })
+    const payload =  await getPayloadHMR({ config: configPromise })
     
     const blogs = await payload.find({
         collection: 'blogs',
+        pagination: false
     })
+
     return (
         <div className=" -space-y-px">
             <Hero />

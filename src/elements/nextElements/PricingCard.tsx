@@ -48,7 +48,7 @@ export const PricingCard = ({ pricing }: { pricing: PricingCard }) => {
             )}
           </div>
         </div>
-        <div className='flex flex-col space-y-1 px-5 lg:px-8'>
+        <div className='flex flex-col space-y-2 px-5 lg:px-8'>
           <p className="text-sm">{pricing.description}</p>
           <div className="flex flex-col space-y-2">
             <p className="text-3xl text-dark-purple font-bold">${pricing.regularPrice}</p>
@@ -77,7 +77,7 @@ export const PricingCard = ({ pricing }: { pricing: PricingCard }) => {
             )) ?? []}
           </div>
           <div>
-            <h3 className="font-bold text-lg">Included services</h3>
+            <h3 className="font-bold text-lg">Services on focus</h3>
             <div className="flex flex-row flex-wrap">
               {pricing.services?.map((service, i) => (
                 <div

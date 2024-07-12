@@ -14,7 +14,7 @@ export const Article = ({
 }) => {
   return (
     <article className={`${style} ${id === 0 ? " lg:col-span-2" : ""}`}>
-        <Link href={`/blog/${blog.slug}`}>
+        <Link href={`/blog/${blog.slug}`} className=''>
             <div className='grid grid-cols-1 lg:grid-cols-3 justify-center items-center'>
                 {/* @ts-expect-error */}
                 <Image className='object-cover aspect-video w-full lg:aspect-square' src={blog.content.image.url} alt={blog.content.image.alt} width={300} height={300}/>

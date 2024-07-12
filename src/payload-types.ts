@@ -7,6 +7,9 @@
  */
 
 export interface Config {
+  auth: {
+    users: UserAuthOperations;
+  };
   collections: {
     services: Service;
     landing: Landing;
@@ -24,17 +27,30 @@ export interface Config {
     collection: 'users';
   };
 }
+export interface UserAuthOperations {
+  forgotPassword: {
+    email: string;
+  };
+  login: {
+    password: string;
+    email: string;
+  };
+  registerFirstUser: {
+    email: string;
+    password: string;
+  };
+}
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "services".
  */
 export interface Service {
-  id: string;
+  id: number;
   label: string;
   slug?: string | null;
   servicePage: {
     title: string;
-    image: string | Media;
+    image: number | Media;
     description: string;
     services: {
       title: string;
@@ -55,8 +71,8 @@ export interface Service {
           id?: string | null;
         }[]
       | null;
-    landing?: (string | Landing)[] | null;
-    blogs?: (string | Blog)[] | null;
+    landing?: (number | Landing)[] | null;
+    blogs?: (number | Blog)[] | null;
     ctaTitle: string;
     ctaDescription: string;
     ctaButtonText: string;
@@ -65,8 +81,8 @@ export interface Service {
     title: string;
     text: string;
     buttonText: string;
-    image?: string | Media | null;
-    'image-bg'?: string | Media | null;
+    image?: number | Media | null;
+    'image-bg'?: number | Media | null;
   };
   seo: {
     metaTitle: string;
@@ -85,7 +101,7 @@ export interface Service {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   alt: string;
   prefix?: string | null;
   updatedAt: string;
@@ -105,9 +121,9 @@ export interface Media {
  * via the `definition` "landing".
  */
 export interface Landing {
-  id: string;
+  id: number;
   title: string;
-  slug?: string | null;
+  uri?: string | null;
   category: string;
   contnet: {
     layout: (
@@ -122,7 +138,7 @@ export interface Landing {
             ctaHasMessage?: boolean | null;
             ctaHasBudget?: boolean | null;
             buttonLink?: string | null;
-            image: string | Media;
+            image: number | Media;
           };
           style: {
             style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
@@ -180,7 +196,7 @@ export interface Landing {
               [k: string]: unknown;
             };
             text_html?: string | null;
-            image: string | Media;
+            image: number | Media;
             buttonType?: ('cta' | 'link') | null;
             buttonText: string;
             ctaTitle?: string | null;
@@ -273,7 +289,7 @@ export interface Landing {
             hasSubtitle?: ('yes' | 'no') | null;
             title?: string | null;
             subtitle?: string | null;
-            faq?: (string | Faq)[] | null;
+            faq?: (number | Faq)[] | null;
           };
           style: {
             style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
@@ -287,7 +303,7 @@ export interface Landing {
             title?: string | null;
             highlights?:
               | {
-                  icon: string | Media;
+                  icon: number | Media;
                   title: string;
                   text?: string | null;
                   id?: string | null;
@@ -330,7 +346,7 @@ export interface Landing {
             ctaHasBudget?: boolean | null;
             buttonLink?: string | null;
             services: {
-              icon?: string | Media | null;
+              icon?: number | Media | null;
               title: string;
               description: string;
               id?: string | null;
@@ -386,7 +402,7 @@ export interface Landing {
         }
       | {
           content: {
-            blogs: (string | Blog)[];
+            blogs: (number | Blog)[];
           };
           style: {
             style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
@@ -405,7 +421,7 @@ export interface Landing {
             ctaHasMessage?: boolean | null;
             ctaHasBudget?: boolean | null;
             buttonLink?: string | null;
-            image: string | Media;
+            image: number | Media;
           };
           style: {
             style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
@@ -417,7 +433,7 @@ export interface Landing {
       | {
           content: {
             title: string;
-            reveiws: (string | Review)[];
+            reveiws: (number | Review)[];
           };
           style: {
             style: 'dark-purple' | 'light-purple' | 'blue' | 'white' | 'black' | 'red' | 'cyan' | 'orange';
@@ -440,7 +456,7 @@ export interface Landing {
  * via the `definition` "faqs".
  */
 export interface Faq {
-  id: string;
+  id: number;
   category: 'general' | 'web-dev' | 'seo' | 'brand-design';
   question: string;
   answer: {
@@ -467,7 +483,7 @@ export interface Faq {
  * via the `definition` "blogs".
  */
 export interface Blog {
-  id: string;
+  id: number;
   title: string;
   slug?: string | null;
   content: {
@@ -482,7 +498,7 @@ export interface Blog {
     )[];
     featured: 'true' | 'false';
     description: string;
-    image: string | Media;
+    image: number | Media;
     content: {
       root: {
         type: string;
@@ -507,7 +523,6 @@ export interface Blog {
     ctaHasMessage?: boolean | null;
     ctaHasBudget?: boolean | null;
     buttonLink?: string | null;
-    relatedBlogs?: (string | Blog)[] | null;
   };
   seo: {
     metaTitle: string;
@@ -521,7 +536,7 @@ export interface Blog {
  * via the `definition` "reviews".
  */
 export interface Review {
-  id: string;
+  id: number;
   title?: string | null;
   name?: string | null;
   text: string;
@@ -533,7 +548,7 @@ export interface Review {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -550,10 +565,10 @@ export interface User {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -573,11 +588,18 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "auth".
+ */
+export interface Auth {
+  [k: string]: unknown;
 }
 
 

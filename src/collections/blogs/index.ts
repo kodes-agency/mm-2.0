@@ -216,13 +216,13 @@ export const Blogs: CollectionConfig = {
                 },
               ]
             },
-            {
-              type: 'relationship',
-              name: 'relatedBlogs',
-              label: 'Related Blogs',
-              hasMany: true,
-              relationTo: 'blogs',
-            }
+            // {
+            //   type: 'relationship',
+            //   name: 'relatedBlogs',
+            //   label: 'Related Blogs',
+            //   hasMany: true,
+            //   relationTo: 'blogs',
+            // }
           ],
         },
         {

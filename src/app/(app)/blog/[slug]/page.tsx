@@ -48,6 +48,12 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     },
   })
 
+  const relatedBlogs = await payload.find({ collection: 'blogs' })
+  const randomBlogs = relatedBlogs.docs
+    .filter(blog => blog.id !== blogs.docs[0].id)
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 2);
+
   return (
     <>
       {blogs?.docs?.length < 1 ? (
@@ -57,7 +63,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           <Hero blog={blogs.docs[0]} /> 
           <Content blog={blogs.docs[0]} />
           <CTA blog={blogs.docs[0]} />
-          <Blogs blog={blogs.docs[0]} />
+          <Blogs blogs={randomBlogs} />
         </div>
       )}
     </>
