@@ -57,7 +57,7 @@ export const Services = ({services} : {services: Service[]}) => {
         const tlText = gsap.timeline({
             scrollTrigger: {
                 trigger: sectionRef.current,
-                start: '+=300 bottom',
+                start: '+=400 bottom',
                 end: 'bottom bottom',
                 scrub: 2,
             },
@@ -86,16 +86,16 @@ export const Services = ({services} : {services: Service[]}) => {
 
     return (
         <section ref={sectionRef} className="bg-gradient-to-b overflow-hidden from-cyan to-magenta pt-40 pb-20 md:min-h-[60vh] lg:min-h-screen flex flex-col items-center  px-6 md:px-20 relative">
-            <div className="flex flex-col space-y-10 lg:space-y-20 max-w-5xl">
+            <div className="flex flex-col space-y-5 lg:space-y-20 max-w-5xl">
                 {/* Heading */}
                 <div className="relative z-10 pr-5 serviceHeading">
                     {services.map((service,id) => (
-                        visibleService === service.homePage.buttonText && (<h2 key={service.homePage.buttonText + id*10} className="text-4xl uppercase leading-snug sm:text-5xl lg:text-7xl font-black text-light-cyan">{service.homePage.title}</h2>)
+                        visibleService === service.homePage.buttonText && (<h2 key={service.homePage.buttonText + id*10} className="text-3xl uppercase leading-snug sm:text-5xl lg:text-7xl font-black text-light-cyan">{service.homePage.title}</h2>)
                     ))}
                 </div>
-                <div className="flex flex-col lg:flex-row lg:justify-between space-y-10 lg:space-y-0">
+                <div className="flex flex-col lg:flex-row lg:justify-between space-y-5 lg:space-y-0">
                 {/* Buttons */}
-                    <div className="flex flex-col items-start space-y-5 relative z-10">
+                    <div className="flex flex-col items-start space-y-2 md:space-y-5 relative z-10">
                         {services.map((service, i) => (
                             <div key={i} className="w-fit">
                                 <button onMouseOver={()=>{
