@@ -14,6 +14,7 @@ export const Hero = () => {
     const sectionRef = useRef<HTMLElement>(null)
     const headingRef = useRef<HTMLHeadingElement>(null)
     const paragraphRef = useRef<HTMLParagraphElement>(null)
+    const invisibleRef = useRef<HTMLDivElement>(null)
 
     useIsomorphicLayoutEffect(() => {
         gsap.registerPlugin(ScrollTrigger)
@@ -41,6 +42,10 @@ export const Hero = () => {
         })
 
         const tlText = gsap.timeline({})
+
+        tlText.set(invisibleRef.current, {
+            autoAlpha: 1
+        })
 
         tlText.from(title.words, {
             opacity: 0,
@@ -71,7 +76,7 @@ export const Hero = () => {
         <section className=" bg-gradient-to-b from-dark-purple to-medium-purple h-screen flex flex-col items-center justify-center p-6 md:p-10 relative z-0">
             <div className="flex flex-col justify-between h-full max-w-5xl relative z-20">
                 <div></div>
-                <div className="space-y-5 flex flex-col items-center">
+                <div ref={invisibleRef} className="space-y-5 flex flex-col items-center invisible">
                     <h1  className="headingEl text-4xl text-center md:text-6xl whitespace-pre-line uppercase max-w-2xl lg:text-7xl font-black transition-all text-light-cyan">{home.hero.title}</h1>
                     <p className="paraEl text-2xl md:text-3xl whitespace-pre-line font-base text-center max-w-2xl transition-all text-light-cyan">{home.hero.subtitle}</p>
                 </div>

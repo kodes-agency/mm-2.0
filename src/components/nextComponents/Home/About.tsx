@@ -23,7 +23,7 @@ export const About = () => {
     })
     // @ts-expect-error
     const text = new SplitType(textRef.current, {
-      types: 'lines,words',
+      types: 'lines,words,chars',
       lineClass: 'line',
     })
 
