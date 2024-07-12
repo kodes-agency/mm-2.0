@@ -2,7 +2,7 @@ import Link from 'next/link'
 import type { Blog } from '@/payload-types'
 import Image from 'next/image'
 
-export const BlogCard = ({ blog, blacked }: { blog: Blog, blacked: boolean }) => {
+export const BlogCard = ({ blog, blacked }: { blog: Blog, blacked?: boolean }) => {
   return (
     <article className={`${blacked ? "bg-black hover:ring-light-cyan border-light-cyan" : "bg-white hover:ring-black border-black"} border-2 hover:scale-95 hover:ring-2 transition-all duration-300`}>
       <Link href={`/blog/${blog.slug}`}>
