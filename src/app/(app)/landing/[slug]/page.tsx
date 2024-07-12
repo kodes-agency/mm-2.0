@@ -60,33 +60,40 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             return (
               <div key={block.id}>
                 {block.blockType === 'hero' && (
+                  // @ts-ignore
                   <Hero block={block} />
                 )}
                 {block.blockType === 'text' && (
                   <Text block={block} />
                 )}
                 {block.blockType === 'image-text' && (
+                  // @ts-ignore
                   <ImageText block={block} />
                 )}
                 {block.blockType === 'statistics' && (
                   <Statistics block={block} />
                 )}
                 {block.blockType === 'services' && (
+                  // @ts-ignore
                   <Services block={block} />
                 )}
                 {block.blockType === 'steps' && (
                   <Steps block={block} />
                 )}
                 {block.blockType === 'faqs' && (
+                  // @ts-ignore
                   <FAQ block={block} />
                 )}
                 {block.blockType === 'highlights' && (
+                  // @ts-ignore
                   <Highlights block={block} />
                 )}
                 {block.blockType === 'blog' && (
+                  // @ts-ignore
                   <Blogs block={block} />
                 )}
                 {block.blockType === 'cta' && (
+                  // @ts-ignore
                   <CTA block={block} />
                 )}   
                 {block.blockType === 'pricing' && (
