@@ -39,7 +39,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = async ({ children }) => 
             style={{ display: 'none', visibility: 'hidden' }}
           ></iframe>
         </noscript>
-      <CookieConsent />
+      {/* <CookieConsent /> */}
         <SmoothScroll />
         <Header services={services.docs} />
         {children}
