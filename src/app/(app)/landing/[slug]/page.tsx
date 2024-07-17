@@ -47,6 +47,11 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   const landing = await payload.find({
     collection: 'landing',
+    where: {
+      uri: {
+        equals: params.slug,
+      },
+    },
   })
 
 

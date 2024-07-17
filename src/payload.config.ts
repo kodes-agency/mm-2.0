@@ -12,6 +12,7 @@ import { Faqs } from './collections/faqs'
 import { Blogs } from './collections/blogs'
 import { Reveiws } from './collections/reviews'
 import { Services } from './collections/services'
+import { Policies } from './collections/policies'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -25,21 +26,18 @@ export default buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Services, LandingPages, Blogs, Reveiws, Faqs, Media, Users],
+  collections: [Services, LandingPages, Blogs, Reveiws, Faqs, Policies, Media, Users],
   editor: lexicalEditor({}),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  // sharp,
-  // upload: {  
-  //   formatOptions: {
-  //     format: 'webp',
-  //   }
-  // },
-  // db: mongooseAdapter({
-  //   url: process.env.DATABASE_URI || '',
-  // }),
+  sharp,
+  upload: {  
+    formatOptions: {
+      format: 'webp',
+    }
+  },
   plugins: [
     s3Storage({
       collections: {

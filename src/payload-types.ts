@@ -16,6 +16,7 @@ export interface Config {
     blogs: Blog;
     reviews: Review;
     faqs: Faq;
+    policies: Policy;
     media: Media;
     users: User;
     'payload-preferences': PayloadPreference;
@@ -540,6 +541,33 @@ export interface Review {
   title?: string | null;
   name?: string | null;
   text: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "policies".
+ */
+export interface Policy {
+  id: number;
+  title: string;
+  slug: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  content_html?: string | null;
   updatedAt: string;
   createdAt: string;
 }

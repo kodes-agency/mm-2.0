@@ -20,6 +20,14 @@ const links = [
         name: 'FAQ',
         href: '/faq',
       },
+      {
+        name: 'Privacy policy',
+        href: '/policy/privacy-policy'
+      },
+      {
+        name: 'Cookie policy',
+        href: '/policy/cookie-policy'
+      }
     ]
   },
   {
@@ -31,7 +39,7 @@ const links = [
       },
       {
         name: 'Web Development',
-        href: '/services/web-design-and-development',
+        href: '/services/web-design-development',
       },
       {
         name: 'Brand design',

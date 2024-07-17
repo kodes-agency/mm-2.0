@@ -30,8 +30,8 @@ export async function generateMetadata(
  
  
   return {
-    title: meta.docs[0].seo.metaTitle,
-    description: meta.docs[0].seo.metaDescription,
+    title: meta.docs[0]?.seo?.metaTitle,
+    description: meta.docs[0]?.seo?.metaDescription,
   }
 }
 
@@ -46,17 +46,17 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     where: {
       slug: {
         equals: params.slug,
-        
       },
     },
   })
 
+
   let currentService = services.docs[0]
 
   const colors = {
-    highlightColor: currentService.style.highlightColor,
-    bgColorFrom: currentService.style.bgColorFrom,
-    bgColorTo: currentService.style.bgColorTo,
+    highlightColor: currentService?.style?.highlightColor,
+    bgColorFrom: currentService?.style?.bgColorFrom,
+    bgColorTo: currentService?.style?.bgColorTo,
   }
 
   return (

@@ -36,7 +36,7 @@ export const Menu = ({
 
   return (
     <section
-      className={`fixed top-0 left-0 bg-white h-screen w-full z-40 overflow-hidden flex flex-col md:items-center px-5 pt-10 md:pt-0 transition-all duration-700 ease-in-out  md:justify-center ${
+      className={`fixed top-0 left-0 bg-white h-dvh w-full z-40 overflow-hidden flex flex-col md:items-center px-5 pt-10 md:pt-0 transition-all duration-700 ease-in-out  md:justify-center ${
         isMenuVisible ? 'translate-y-0' : ' -translate-y-full'
       }`}
     >

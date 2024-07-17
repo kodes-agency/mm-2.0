@@ -8,6 +8,7 @@ import './global.css'
 import { Montserrat } from 'next/font/google'
 import Header from '../../components/nextComponents/Header'
 import Footer from '@/components/nextComponents/Footer'
+import { CookieConsent } from '@/components/nextComponents/CookieConsent'
 const SmoothScroll = dynamic(() => import('@/components/nextComponents/SmoothScroll'), {
   ssr: false,
 })
@@ -21,12 +22,14 @@ const montserrat = Montserrat({
 const Layout: React.FC<{ children: React.ReactNode }> = async ({ children }) => {
   const payload = await getPayloadHMR({ config: configPromise })
 
+
+
   const services = await payload.find({
     collection: 'services',
   })
   return (
     <html className={montserrat.className}>
-      <GoogleTagManager gtmId="GTM-KV5BRZVR" />
+      <GoogleTagManager gtmId="GTM-KV5BRZVR"/>
       <body>
         <noscript>
           <iframe
@@ -36,6 +39,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = async ({ children }) => 
             style={{ display: 'none', visibility: 'hidden' }}
           ></iframe>
         </noscript>
+      <CookieConsent />
         <SmoothScroll />
         <Header services={services.docs} />
         {children}
