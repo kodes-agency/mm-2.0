@@ -36,16 +36,16 @@ export const Menu = ({
 
   return (
     <section
-      className={`fixed top-0 left-0 bg-white h-svh w-full z-40 overflow-hidden flex flex-col md:items-center px-5 pt-10 md:pt-0 transition-all duration-700 ease-in-out  md:justify-center ${
+      className={`fixed top-0 left-0 bg-white h-screen w-full z-40 overflow-hidden flex flex-col md:items-center px-5 pt-8 md:pt-0 transition-all duration-700 ease-in-out  md:justify-center ${
         isMenuVisible ? 'translate-y-0' : ' -translate-y-full'
       }`}
     >
       <div
-        className={`relative flex flex-col md:flex-row space-y-10 md:space-y-0 md:space-x-20 lg:space-x-60 items-start pt-20 transition-opacity duration-1000 ${
+        className={`relative flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-20 lg:space-x-60 items-start pt-20 transition-opacity duration-1000 ${
           isMenuVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        <div className="flex flex-col space-y-2 md:space-y-3 relative">
+        <div className="flex flex-col space-y-1 md:space-y-3 relative">
           <p className="font-bold uppercase text-2xl md:text-3xl lg:text-4xl">PAGES://</p>
           {pages.map((page) => (
             <Link
@@ -61,7 +61,7 @@ export const Menu = ({
             </Link>
           ))}
         </div>
-        <div className="flex flex-col space-y-2 md:space-y-3 relative">
+        <div className="flex flex-col space-y-1 md:space-y-3 relative">
           <p className="transition-all duration-500 font-bold uppercase text-2xl md:text-3xl lg:text-4xl">
             SERVICES://
           </p>
@@ -83,7 +83,7 @@ export const Menu = ({
 
       </div>
         <Logo fill="" style="w-[1200px] h-[1200px] absolute bottom-2/4  opacity-30  -z-10 fill-light-cyan" />
-      <div className="flex flex-col md:items-center md:justify-center mt-20 space-y-4 relative">
+      <div className="flex flex-col md:items-center md:justify-center mt-8 md:mt-20 space-y-4 relative">
         <p className='md:text-center'>
           <strong>Ready to transform your digital presence? </strong> <br />
           Let's craft your unique journey together.
