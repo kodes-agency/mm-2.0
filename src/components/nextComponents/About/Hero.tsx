@@ -84,7 +84,7 @@ export const Hero = () => {
         alt="About Mission Morph Digital Marketing Agency"
         width={1200}
         height={700}
-        className="fixed top-0 z-10 right-0 w-full h-screen object-cover mix-blend-darken"
+        className="fixed top-0 z-10 right-0 w-full h-screen object-cover mix-blend-darken pointer-events-none"
       />
     </section>
   )

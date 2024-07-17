@@ -94,7 +94,7 @@ export const Blog = ({blogs}: {blogs: BlogType[]}) => {
 
 
     return (
-        <section className="bg-black min-h-screen flex flex-col pb-40 items-center overflow-hidden">
+        <section className="bg-black min-h-screen flex flex-col pb-0 md:pb-40 items-center overflow-hidden">
             <div ref={sectionRef} className="relative w-full flex flex-col items-center justify-center h-screen">
                 <Image
                     ref={imgRef}
