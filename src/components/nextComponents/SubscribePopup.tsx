@@ -41,14 +41,14 @@ const SubscribePopup = ({
           {openText}
         </button>
       </DialogTrigger>
-      <DialogContent className="xl:w-[1152px] max-w-6xl max-h-[1000px] !rounded-sm transition-all duration-500 !bg-black">
+      <DialogContent className="xl:w-[1152px] max-w-6xl max-h-[1000px] !rounded-sm transition-all duration-500 !bg-black [&_svg]:text-white">
         <section className="w-full h-full flex flex-col items-center">
           <div className="flex flex-row space-x-4 md:flex-col items-center md:space-x-0 md:space-y-4 mb-5 md:mb-10">
             <Logo fill="white" style="w-8 h-8" />
             <Name fill="white" style="" />
           </div>
           {isFormSubmitted && (
-            <div className="w-full h-full flex flex-col min-h-[50vh] justify-center items-center">
+            <div id="newLead" className="w-full h-full flex flex-col min-h-[50vh] justify-center items-center">
               <div className="text-light-purple font-bold mb-3 md:mb-5 text-center text-4xl ">
                 Thank you for your request!
               </div>
@@ -151,14 +151,20 @@ const SubscribePopup = ({
                   </div>
                 </div>
               )}
-              <p className="text-gray/80 text-center text-xs max-w-80 mt-5">
+              <p className="text-gray/80 text-center text-xs max-w-96 mt-5">
                 By clicking on the "Send a request" button, you consent to the{' '}
                 <Link
-                  href="/privacy"
+                  href="/privacy/privacy-policy"
                   className="text-gray/80 underline font-medium hover:text-white transition-all duration-300 text-center text-xs max-w-80"
                 >
                   processing of personal data
-                </Link>
+                </Link> and agree to our{' '}
+                <Link
+                  href="/privacy/privacy-policy"
+                  className="text-gray/80 underline font-medium hover:text-white transition-all duration-300 text-center text-xs max-w-80"
+                  >
+                    cookie policy.
+                  </Link>
               </p>
             </div>
           )}

@@ -77,14 +77,14 @@ export const CookieConsent = ({changable}:{changable?:boolean}) => {
             </button>
         )}
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogTrigger>Manage</DialogTrigger>
-            <DialogContent className='!bg-black'>
+            <DialogTrigger className='text-black'>Manage</DialogTrigger>
+            <DialogContent className='!bg-black [&_svg]:text-white'>
                 <DialogHeader>
                     <DialogTitle className='text-white'>Cookie consent</DialogTitle>
                     <DialogDescription className='text-white'>Manage your cookie settings here.</DialogDescription>
                 </DialogHeader>
-                <ScrollArea className='h-[80vh] sm:h-auto py-5 pb-10 '>
-                    <section className='flex flex-col space-y-5'>
+                <ScrollArea className='h-[70vh] sm:h-auto'>
+                    <section className='flex flex-col space-y-5 py-5'>
                         <div className='flex space-x-5 md:space-x-10 justify-between'>
                             <div>
                                 <Label className="text-white" htmlFor='ad_storage'>
@@ -157,7 +157,9 @@ export const CookieConsent = ({changable}:{changable?:boolean}) => {
                                 checked={consentData.analytics_storage === 'granted'}
                             />
                         </div>
-                        <div className='bg-black fixed bottom-0 left-0 w-full p-5'>
+                    </section>
+                </ScrollArea>
+                        <div className='bg-black w-full'>
                             <Button 
                                 onClick={()=>{
                                     updateCookies()
@@ -165,8 +167,6 @@ export const CookieConsent = ({changable}:{changable?:boolean}) => {
                                 }}      
                                 className='w-full bg-white text-black'>Apply changes</Button>
                         </div>
-                    </section>
-                </ScrollArea>
             </DialogContent>
         </Dialog>
       </div>
