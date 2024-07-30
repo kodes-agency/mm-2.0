@@ -35,15 +35,15 @@ const links = [
     links: [
       {
         name: 'Local & Organic SEO',
-        href: '/services/search-engine-optimization',
+        href: '/service/search-engine-optimization',
       },
       {
         name: 'Web Development',
-        href: '/services/web-design-development',
+        href: '/service/web-design-development',
       },
       {
         name: 'Brand design',
-        href: '/services/brand-design',
+        href: '/service/brand-design',
       },
     ]
   },

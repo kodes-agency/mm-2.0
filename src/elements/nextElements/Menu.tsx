@@ -69,7 +69,7 @@ export const Menu = ({
           {services.map((service, id) => (
             <Link
               className={`links transition-all duration-500 uppercase group text-2xl md:text-3xl lg:text-4xl w-fit`}
-              href={'/services/' + service.slug || '/'}
+              href={'/service/' + service.slug || '/'}
               key={id}
               onClick={() => {
                 setIsMenuVisible(false)

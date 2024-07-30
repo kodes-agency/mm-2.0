@@ -113,7 +113,7 @@ export const Services = ({services} : {services: Service[]}) => {
                             visibleService === service.homePage.buttonText && (
                                 <div key={i} className='flex flex-col space-y-5'>
                                     <p className=" max-w-lg text-light-cyan text-lg">{service.homePage.text}</p>
-                                    <Button text={"Learn about "+service.homePage.buttonText} style='bg-light-cyan text-sm whitespace-nowrap text-dark-purple ring-2 ring-light-purple hover:bg-light-purple hover:text-dark-purple hover:ring-dark-purple transition-all duration-300 ' link={`/services/${service.slug}`} />
+                                    <Button text={"Learn about "+service.homePage.buttonText} style='bg-light-cyan text-sm whitespace-nowrap text-dark-purple ring-2 ring-light-purple hover:bg-light-purple hover:text-dark-purple hover:ring-dark-purple transition-all duration-300 ' link={`/service/${service.slug}`} />
                                 </div>
                             )
                         ))}
