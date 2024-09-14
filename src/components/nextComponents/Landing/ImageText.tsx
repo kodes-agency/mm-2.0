@@ -73,7 +73,7 @@ export const ImageText = ({ block }: { block: ImageText }) => {
                   alt={block.content.image.alt}
                   width="800"
                   height="800"
-                  className={`object-cover w-full md:w-5/12 aspect-video pb-10 md:pb-0 md:aspect-square ${block.content.imagePosition === "left" ? "md:pl-12" : "md:pr-12"}`}
+                  className={`object-cover w-full md:w-5/12 aspect-auto pb-10 md:pb-0 md:aspect-square ${block.content.imagePosition === "left" ? "md:pl-12" : "md:pr-12"}`}
                 />
             </div>
         </section>  

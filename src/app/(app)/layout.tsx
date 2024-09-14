@@ -22,8 +22,6 @@ const montserrat = Montserrat({
 const Layout: React.FC<{ children: React.ReactNode }> = async ({ children }) => {
   const payload = await getPayloadHMR({ config: configPromise })
 
-
-
   const services = await payload.find({
     collection: 'services',
   })

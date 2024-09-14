@@ -1,8 +1,8 @@
 'use client'
 
-import SplitType from 'split-type'
 import { about } from '@/content/content'
 import Image from 'next/image'
+import SplitType from 'split-type'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
