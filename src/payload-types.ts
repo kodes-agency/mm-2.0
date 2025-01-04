@@ -489,6 +489,7 @@ export interface Blog {
   slug?: string | null;
   content: {
     category: (
+      | 'youtube-seo'
       | 'important-event'
       | 'case-studie'
       | 'web-design'

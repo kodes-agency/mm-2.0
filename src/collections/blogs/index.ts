@@ -35,7 +35,6 @@ export const Blogs: CollectionConfig = {
         {
           name: 'content',
           label: 'Content',
-          
           fields: [
             {
               name: 'category',

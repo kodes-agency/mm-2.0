@@ -6,13 +6,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const payload = await getPayloadHMR({ config: configPromise })
     const blogs = await payload.find({
         collection: 'blogs',
+        pagination: false,
+        limit: 1000,
     })
     const landingPages = await payload.find({
         collection: 'landing',
+        pagination: false,
+        limit: 1000,
     })
 
     const services = await payload.find({
         collection: 'services',
+        pagination: false,
+        limit: 1000,
     })
 
     const blogXML = blogs.docs.map((blog) => {
