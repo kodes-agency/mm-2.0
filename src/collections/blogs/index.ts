@@ -45,6 +45,10 @@ export const Blogs: CollectionConfig = {
               hasMany: true,
               options: [
                 {
+                  label: 'YouTube SEO',
+                  value: 'youtube-seo',
+                },
+                {
                   label: 'Important event',
                   value: 'important-event',
                 },
