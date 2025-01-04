@@ -52,7 +52,7 @@ export const Blogs: CollectionConfig = {
                   value: 'important-event',
                 },
                 {
-                  label: 'Case studie',
+                  label: 'Case study',
                   value: 'case-studie',
                 },
                 {
