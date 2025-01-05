@@ -23,7 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     const blogXML = blogs.docs.map((blog) => {
         return {
-            url: `htpps://missionmorph.com/blog/${blog.slug}`,
+            url: `https://missionmorph.com/blog/${blog.slug}`,
             lastModified: blog.updatedAt,
             changeFrequency: 'daily',
             priority: 1,
@@ -32,7 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     const landingXML = landingPages.docs.map((landing) => {
         return {
-            url: `htpps://missionmorph.com/landing/${landing.uri}`,
+            url: `https://missionmorph.com/landing/${landing.uri}`,
             lastModified: landing.updatedAt,
             changeFrequency: 'weekly',
             priority: 1,
@@ -41,7 +41,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     const serviceXML = services.docs.map((service) => {
         return {
-            url: `htpps://missionmorph.com/service/${service.slug}`,
+            url: `https://missionmorph.com/service/${service.slug}`,
             lastModified: service.updatedAt,
             changeFrequency: 'monthly',
             priority: 1,
@@ -50,25 +50,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     const staticPages = [
         {
-            url: 'htpps://missionmorph.com',
+            url: 'https://missionmorph.com',
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.7,
         },
         {
-            url: 'htpps://missionmorph.com/about',
+            url: 'https://missionmorph.com/about',
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.7,
         },
         {
-            url: 'htpps://missionmorph.com/blog',
+            url: 'https://missionmorph.com/blog',
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.7,
         },
         {
-            url: 'htpps://missionmorph.com/faq',
+            url: 'https://missionmorph.com/faq',
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.7,
