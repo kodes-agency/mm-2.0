@@ -9,6 +9,7 @@ import { Montserrat } from 'next/font/google'
 import Header from '../../components/nextComponents/Header'
 import Footer from '@/components/nextComponents/Footer'
 import { CookieConsent } from '@/components/nextComponents/CookieConsent'
+import Script from 'next/script'
 const SmoothScroll = dynamic(() => import('@/components/nextComponents/SmoothScroll'), {
   ssr: false,
 })
@@ -28,6 +29,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = async ({ children }) => 
   return (
     <html className={montserrat.className}>
       <GoogleTagManager gtmId="GTM-KV5BRZVR"/>
+      <Script defer src="https://umami.kodes.agency/script.js" data-website-id="c38be8f9-1b5d-4288-b36f-137e9d82d77f"/>
       <body>
         <noscript>
           <iframe
