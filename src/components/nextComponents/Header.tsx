@@ -58,7 +58,7 @@ const Header = ({ services }: { services: Service[] }) => {
               />
             )
           }
-          <button data-umami-event="Open navigation menu"  onClick={toggleMenu} className={`transition-all duration-500 group p-1 w-14 md:w-16 ${isHidden && !isMenuVisible && "bg-light-purple rounded-full "}`}>
+          <button onClick={toggleMenu} className={`transition-all duration-500 group p-1 w-14 md:w-16 ${isHidden && !isMenuVisible && "bg-light-purple rounded-full "}`}>
                 {isMenuVisible ? (
                   <div className='relative mt-1'>
                     <p className="text-black text-sm font-medium">close</p>

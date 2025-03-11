@@ -29,7 +29,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = async ({ children }) => 
   return (
     <html className={montserrat.className}>
       <GoogleTagManager gtmId="GTM-KV5BRZVR"/>
-      <Script defer src="https://umami.kodes.agency/script.js" data-website-id="c38be8f9-1b5d-4288-b36f-137e9d82d77f"/>
       <body>
         <noscript>
           <iframe
