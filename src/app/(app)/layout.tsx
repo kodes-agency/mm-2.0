@@ -29,6 +29,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = async ({ children }) => 
   return (
     <html className={montserrat.className}>
       <GoogleTagManager gtmId="GTM-KV5BRZVR"/>
+      <Script defer data-domain="missionmorph.com" src="https://umami.kodes.agency/js/script.js"></Script>
       <body>
         <noscript>
           <iframe
