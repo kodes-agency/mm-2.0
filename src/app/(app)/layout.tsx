@@ -43,7 +43,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = async ({ children }) => 
         <SmoothScroll />
         <Header services={services.docs} />
           {children}
-        <Toaster />
         <Footer />
       </body>
     </html>
