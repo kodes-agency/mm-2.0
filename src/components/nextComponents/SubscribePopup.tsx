@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { subscribe } from '@/functions/actions'
 import { DialogTitle } from '@radix-ui/react-dialog'
+import { usePlausible } from 'next-plausible'
 
 const SubscribePopup = ({
   openText,
@@ -33,11 +34,17 @@ const SubscribePopup = ({
   })
   const [isFormSubmitted, setIsFormSubmitted] = useState<boolean>(false)
   const { toast } = useToast()
+  const plausible = usePlausible()
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className={`${style} uppercase rounded-full p-2 w-fit text-sm font-semibold px-5 transition-all duration-300`}>
+        <button
+          onClick={() => {
+            plausible('Open Lead Form')
+          }}
+          className={`${style} uppercase rounded-full p-2 w-fit text-sm font-semibold px-5 transition-all duration-300`}
+        >
           {openText}
         </button>
       </DialogTrigger>
@@ -48,7 +55,10 @@ const SubscribePopup = ({
             <Name fill="white" style="" />
           </div>
           {isFormSubmitted && (
-            <div id="newLead" className="w-full h-full flex flex-col min-h-[50vh] justify-center items-center">
+            <div
+              id="newLead"
+              className="w-full h-full flex flex-col min-h-[50vh] justify-center items-center"
+            >
               <div className="text-light-purple font-bold mb-3 md:mb-5 text-center text-4xl ">
                 Thank you for your request!
               </div>
@@ -59,7 +69,9 @@ const SubscribePopup = ({
           )}
           {!isFormSubmitted && (
             <div className="w-full h-full flex flex-col items-center">
-              <DialogTitle className='text-gray mb-3 md:mb-5 text-center text-xl'>{title}</DialogTitle>
+              <DialogTitle className="text-gray mb-3 md:mb-5 text-center text-xl">
+                {title}
+              </DialogTitle>
               <div className="flex w-full">
                 <div className="border-y border-gray/40 w-1/2 p-1">
                   <Input
@@ -158,13 +170,14 @@ const SubscribePopup = ({
                   className="text-gray/80 underline font-medium hover:text-white transition-all duration-300 text-center text-xs max-w-80"
                 >
                   processing of personal data
-                </Link> and agree to our{' '}
+                </Link>{' '}
+                and agree to our{' '}
                 <Link
                   href="/privacy/privacy-policy"
                   className="text-gray/80 underline font-medium hover:text-white transition-all duration-300 text-center text-xs max-w-80"
-                  >
-                    cookie policy.
-                  </Link>
+                >
+                  cookie policy.
+                </Link>
               </p>
             </div>
           )}
@@ -178,18 +191,28 @@ const SubscribePopup = ({
               onClick={async () => {
                 const subscribeResult = await subscribe(userData)
                 if (!subscribeResult.success && subscribeResult.message instanceof Array) {
-                  toast({
+                  return toast({
                     title: `Error`,
                     description: `${subscribeResult.message[0].message}`,
                   })
-                } else if (!subscribeResult.success && typeof subscribeResult.message === 'string') {
-                  toast({
+                } else if (
+                  !subscribeResult.success &&
+                  typeof subscribeResult.message === 'string'
+                ) {
+                  return toast({
                     title: 'Error!',
                     description: `${subscribeResult.message}`,
                   })
                 }
 
-                if (subscribeResult.success) setIsFormSubmitted(true)
+                if (subscribeResult.success) {
+                  setIsFormSubmitted(true)
+                  plausible('New Lead')
+                  return toast({
+                    title: 'Success!',
+                    description: `${subscribeResult.message}`,
+                  })
+                }
               }}
               className={`hover:ring-2 disabled:cursor-not-allowed disabled:bg-green disabled:text-white hover:ring-light-purple hover:bg-dark-purple hover:text-light-purple transition-all duration-300 py-1.5 px-3 bg-light-purple w-fit h-fit text-sm text-dark-purple font-medium rounded-full`}
               disabled={isFormSubmitted}

@@ -1,6 +1,5 @@
 import React from 'react'
 import { getPayloadHMR } from '@payloadcms/next/utilities'
-import { Toaster } from '@/components/ui/toaster'
 import dynamic from 'next/dynamic'
 import { GoogleTagManager } from '@next/third-parties/google'
 import configPromise from '@payload-config'
@@ -9,6 +8,7 @@ import { Montserrat } from 'next/font/google'
 import Header from '../../components/nextComponents/Header'
 import Footer from '@/components/nextComponents/Footer'
 import { CookieConsent } from '@/components/nextComponents/CookieConsent'
+import PlausibleProvider from 'next-plausible'
 import Script from 'next/script'
 const SmoothScroll = dynamic(() => import('@/components/nextComponents/SmoothScroll'), {
   ssr: false,
@@ -29,7 +29,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = async ({ children }) => 
   return (
     <html className={montserrat.className}>
       <GoogleTagManager gtmId="GTM-KV5BRZVR"/>
-      <Script defer data-domain="missionmorph.com" src="https://umami.kodes.agency/js/script.js"></Script>
+      {/* <Script defer data-domain="missionmorph.com" src="https://umami.kodes.agency/js/script.tagged-events.js"></Script> */}
+      <head>
+        <PlausibleProvider domain="missionmorph.com" customDomain='https://umami.kodes.agency' selfHosted enabled taggedEvents />
+      </head>
       <body>
         <noscript>
           <iframe
