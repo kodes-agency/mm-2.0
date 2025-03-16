@@ -3,7 +3,7 @@ import type { CollectionConfig } from 'payload'
 export const Media: CollectionConfig = {
   slug: 'media',
   admin: {
-    useAsTitle: 'title',
+    useAsTitle: 'alt',
   },
   labels: {
     singular: 'Media',
@@ -16,12 +16,12 @@ export const Media: CollectionConfig = {
     staticDir: 'media',
     adminThumbnail: 'thumbnail',
     mimeTypes: ['image/*', 'application/pdf'],
-    // formatOptions: {
-    //     format: 'webp',
-    //     options: {
-    //         quality: 60,
-    //     },
-    // },
+    formatOptions: {
+        format: 'webp',
+        options: {
+            quality: 90,
+        },
+    },
 
   },
   fields: [

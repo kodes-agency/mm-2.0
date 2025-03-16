@@ -1,20 +1,21 @@
-import { getPayloadHMR } from '@payloadcms/next/utilities'
-import configPromise from '@payload-config'
+import { getPayload } from 'payload'
+import config from '@payload-config'
 import { Hero } from '@/components/nextComponents/Blog/slug/Hero'
 import { Content } from '@/components/nextComponents/Blog/slug/Content'
 import { CTA } from '@/components/nextComponents/Blog/slug/CTA'
 import { Blogs } from '@/components/nextComponents/Blog/slug/Blogs'
 import type { Metadata } from 'next'
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
+import type { Props } from '@/lib/types'
 
 export async function generateMetadata(
-  { params }: {params: Params},
+  { params }: Props,
 ): Promise<Metadata> {
   // read route params
-  const slug = params.slug
+  const { slug } = await params
  
   // fetch data
-  const payload = await getPayloadHMR({ config: configPromise })
+    const payload = await getPayload({ config })
+
 
   const blogs = await payload.find({
     collection: 'blogs',
@@ -36,14 +37,18 @@ export async function generateMetadata(
 export const dynamic = 'force-dynamic'
 
 
-const Page = async ({ params }: { params: { slug: string } }) => {
-  const payload = await getPayloadHMR({ config: configPromise })
+const Page = async (
+  { params }: Props,
+) => {
+    const { slug } = await params
+    const payload = await getPayload({ config })
+
 
   const blogs = await payload.find({
     collection: 'blogs',
     where: {
       slug: {
-        equals: params.slug,
+        equals: slug,
       },
     },
   })

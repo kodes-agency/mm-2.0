@@ -1,7 +1,7 @@
 import { Archive } from "@/components/nextComponents/FAQ/Archive"
 import { Hero } from "@/components/nextComponents/FAQ/Hero"
-import { getPayloadHMR } from '@payloadcms/next/utilities'
-import configPromise from '@payload-config'
+import { getPayload } from 'payload'
+import config from '@payload-config'
 import { Metadata } from 'next'
  
 export const metadata: Metadata = {
@@ -12,7 +12,8 @@ export const dynamic = 'force-dynamic'
 
 
 const Page = async () => {
-    const payload = await getPayloadHMR({ config: configPromise })
+      const payload = await getPayload({ config })
+
     const faqs = await payload.find({
         collection: 'faqs',
         pagination: false,

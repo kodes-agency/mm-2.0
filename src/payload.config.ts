@@ -33,11 +33,6 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   sharp,
-  upload: {  
-    formatOptions: {
-      format: 'webp',
-    }
-  },
   plugins: [
     s3Storage({
       collections: {

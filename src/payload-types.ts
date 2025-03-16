@@ -6,10 +6,65 @@
  * and re-run `payload generate:types` to regenerate this file.
  */
 
+/**
+ * Supported timezones in IANA format.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "supportedTimezones".
+ */
+export type SupportedTimezones =
+  | 'Pacific/Midway'
+  | 'Pacific/Niue'
+  | 'Pacific/Honolulu'
+  | 'Pacific/Rarotonga'
+  | 'America/Anchorage'
+  | 'Pacific/Gambier'
+  | 'America/Los_Angeles'
+  | 'America/Tijuana'
+  | 'America/Denver'
+  | 'America/Phoenix'
+  | 'America/Chicago'
+  | 'America/Guatemala'
+  | 'America/New_York'
+  | 'America/Bogota'
+  | 'America/Caracas'
+  | 'America/Santiago'
+  | 'America/Buenos_Aires'
+  | 'America/Sao_Paulo'
+  | 'Atlantic/South_Georgia'
+  | 'Atlantic/Azores'
+  | 'Atlantic/Cape_Verde'
+  | 'Europe/London'
+  | 'Europe/Berlin'
+  | 'Africa/Lagos'
+  | 'Europe/Athens'
+  | 'Africa/Cairo'
+  | 'Europe/Moscow'
+  | 'Asia/Riyadh'
+  | 'Asia/Dubai'
+  | 'Asia/Baku'
+  | 'Asia/Karachi'
+  | 'Asia/Tashkent'
+  | 'Asia/Calcutta'
+  | 'Asia/Dhaka'
+  | 'Asia/Almaty'
+  | 'Asia/Jakarta'
+  | 'Asia/Bangkok'
+  | 'Asia/Shanghai'
+  | 'Asia/Singapore'
+  | 'Asia/Tokyo'
+  | 'Asia/Seoul'
+  | 'Australia/Sydney'
+  | 'Pacific/Guam'
+  | 'Pacific/Noumea'
+  | 'Pacific/Auckland'
+  | 'Pacific/Fiji';
+
 export interface Config {
   auth: {
     users: UserAuthOperations;
   };
+  blocks: {};
   collections: {
     services: Service;
     landing: Landing;
@@ -19,24 +74,52 @@ export interface Config {
     policies: Policy;
     media: Media;
     users: User;
+    'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
+  collectionsJoins: {};
+  collectionsSelect: {
+    services: ServicesSelect<false> | ServicesSelect<true>;
+    landing: LandingSelect<false> | LandingSelect<true>;
+    blogs: BlogsSelect<false> | BlogsSelect<true>;
+    reviews: ReviewsSelect<false> | ReviewsSelect<true>;
+    faqs: FaqsSelect<false> | FaqsSelect<true>;
+    policies: PoliciesSelect<false> | PoliciesSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
+    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
+    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
+  };
+  db: {
+    defaultIDType: number;
+  };
   globals: {};
+  globalsSelect: {};
   locale: null;
   user: User & {
     collection: 'users';
+  };
+  jobs: {
+    tasks: unknown;
+    workflows: unknown;
   };
 }
 export interface UserAuthOperations {
   forgotPassword: {
     email: string;
+    password: string;
   };
   login: {
-    password: string;
     email: string;
+    password: string;
   };
   registerFirstUser: {
+    email: string;
+    password: string;
+  };
+  unlock: {
     email: string;
     password: string;
   };
@@ -72,7 +155,13 @@ export interface Service {
           id?: string | null;
         }[]
       | null;
+    /**
+     * Select the landing pages that are related to this service.
+     */
     landing?: (number | Landing)[] | null;
+    /**
+     * Select the blogs that are related to this service.
+     */
     blogs?: (number | Blog)[] | null;
     ctaTitle: string;
     ctaDescription: string;
@@ -82,11 +171,17 @@ export interface Service {
     title: string;
     text: string;
     buttonText: string;
-    image?: number | Media | null;
-    'image-bg'?: number | Media | null;
+    image?: (number | null) | Media;
+    'image-bg'?: (number | null) | Media;
   };
   seo: {
+    /**
+     * Max 90 characters
+     */
     metaTitle: string;
+    /**
+     * Max 200 characters
+     */
     metaDescription: string;
   };
   style: {
@@ -226,9 +321,21 @@ export interface Landing {
             ctaHasBudget?: boolean | null;
             buttonLink?: string | null;
             statistic: {
+              /**
+               * This is the prefix that will be displayed before the number. For example, "over" or "more than".
+               */
               prefix?: string | null;
+              /**
+               * This is the number that will be displayed in the statistic. If it is a percentage, include the % symbol.
+               */
               number: string;
+              /**
+               * This is the suffix that will be displayed after the number. For example, "per year" or "times more clients".
+               */
               suffix?: string | null;
+              /**
+               * This is the description that will be displayed under the statistic. It should explain what the statistic is about.
+               */
               description: string;
               id?: string | null;
             }[];
@@ -347,7 +454,7 @@ export interface Landing {
             ctaHasBudget?: boolean | null;
             buttonLink?: string | null;
             services: {
-              icon?: number | Media | null;
+              icon?: (number | null) | Media;
               title: string;
               description: string;
               id?: string | null;
@@ -446,7 +553,13 @@ export interface Landing {
     )[];
   };
   seo: {
+    /**
+     * Max 90 characters
+     */
     metaTitle: string;
+    /**
+     * Max 200 characters
+     */
     metaDescription: string;
   };
   updatedAt: string;
@@ -498,6 +611,9 @@ export interface Blog {
       | 'local-seo'
       | 'brand-design'
     )[];
+    /**
+     * Featured blogs will be displayed on the homepage
+     */
     featured: 'true' | 'false';
     description: string;
     image: number | Media;
@@ -527,7 +643,13 @@ export interface Blog {
     buttonLink?: string | null;
   };
   seo: {
+    /**
+     * Max 90 characters
+     */
     metaTitle: string;
+    /**
+     * Max 200 characters
+     */
     metaDescription: string;
   };
   updatedAt: string;
@@ -591,6 +713,53 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-locked-documents".
+ */
+export interface PayloadLockedDocument {
+  id: number;
+  document?:
+    | ({
+        relationTo: 'services';
+        value: number | Service;
+      } | null)
+    | ({
+        relationTo: 'landing';
+        value: number | Landing;
+      } | null)
+    | ({
+        relationTo: 'blogs';
+        value: number | Blog;
+      } | null)
+    | ({
+        relationTo: 'reviews';
+        value: number | Review;
+      } | null)
+    | ({
+        relationTo: 'faqs';
+        value: number | Faq;
+      } | null)
+    | ({
+        relationTo: 'policies';
+        value: number | Policy;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: number | User;
+      } | null);
+  globalSlug?: string | null;
+  user: {
+    relationTo: 'users';
+    value: number | User;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
@@ -622,6 +791,556 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services_select".
+ */
+export interface ServicesSelect<T extends boolean = true> {
+  label?: T;
+  slug?: T;
+  servicePage?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+        services?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              description?: T;
+              features?:
+                | T
+                | {
+                    feature?: T;
+                    id?: T;
+                  };
+              id?: T;
+            };
+        statistics?:
+          | T
+          | {
+              number?: T;
+              text?: T;
+              id?: T;
+            };
+        landing?: T;
+        blogs?: T;
+        ctaTitle?: T;
+        ctaDescription?: T;
+        ctaButtonText?: T;
+      };
+  homePage?:
+    | T
+    | {
+        title?: T;
+        text?: T;
+        buttonText?: T;
+        image?: T;
+        'image-bg'?: T;
+      };
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+      };
+  style?:
+    | T
+    | {
+        highlightColor?: T;
+        bgColorFrom?: T;
+        bgColorTo?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "landing_select".
+ */
+export interface LandingSelect<T extends boolean = true> {
+  title?: T;
+  uri?: T;
+  category?: T;
+  contnet?:
+    | T
+    | {
+        layout?:
+          | T
+          | {
+              hero?:
+                | T
+                | {
+                    content?:
+                      | T
+                      | {
+                          title?: T;
+                          label?: T;
+                          subtitle?: T;
+                          buttonType?: T;
+                          buttonText?: T;
+                          ctaTitle?: T;
+                          ctaHasMessage?: T;
+                          ctaHasBudget?: T;
+                          buttonLink?: T;
+                          image?: T;
+                        };
+                    style?:
+                      | T
+                      | {
+                          style?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              text?:
+                | T
+                | {
+                    content?:
+                      | T
+                      | {
+                          title?: T;
+                          text?: T;
+                          text_html?: T;
+                        };
+                    style?:
+                      | T
+                      | {
+                          style?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              'image-text'?:
+                | T
+                | {
+                    content?:
+                      | T
+                      | {
+                          hasTitle?: T;
+                          hasButton?: T;
+                          imagePosition?: T;
+                          title?: T;
+                          text?: T;
+                          text_html?: T;
+                          image?: T;
+                          buttonType?: T;
+                          buttonText?: T;
+                          ctaTitle?: T;
+                          ctaHasMessage?: T;
+                          ctaHasBudget?: T;
+                          buttonLink?: T;
+                        };
+                    style?:
+                      | T
+                      | {
+                          style?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              statistics?:
+                | T
+                | {
+                    content?:
+                      | T
+                      | {
+                          hasTitle?: T;
+                          hasSubtitle?: T;
+                          hasButton?: T;
+                          title?: T;
+                          subtitle?: T;
+                          buttonType?: T;
+                          buttonText?: T;
+                          ctaTitle?: T;
+                          ctaHasMessage?: T;
+                          ctaHasBudget?: T;
+                          buttonLink?: T;
+                          statistic?:
+                            | T
+                            | {
+                                prefix?: T;
+                                number?: T;
+                                suffix?: T;
+                                description?: T;
+                                id?: T;
+                              };
+                        };
+                    style?:
+                      | T
+                      | {
+                          style?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              pricing?:
+                | T
+                | {
+                    content?:
+                      | T
+                      | {
+                          hasTitle?: T;
+                          hasSubtitle?: T;
+                          title?: T;
+                          subtitle?: T;
+                          packages?:
+                            | T
+                            | {
+                                isDiscounted?: T;
+                                isMostPopular?: T;
+                                title?: T;
+                                description?: T;
+                                regularPrice?: T;
+                                discountedPrice?: T;
+                                priceDetails?: T;
+                                buttonType?: T;
+                                buttonText?: T;
+                                ctaTitle?: T;
+                                ctaHasMessage?: T;
+                                ctaHasBudget?: T;
+                                buttonLink?: T;
+                                features?:
+                                  | T
+                                  | {
+                                      feature?: T;
+                                      id?: T;
+                                    };
+                                services?:
+                                  | T
+                                  | {
+                                      service?: T;
+                                      id?: T;
+                                    };
+                                id?: T;
+                              };
+                        };
+                    style?:
+                      | T
+                      | {
+                          style?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              faqs?:
+                | T
+                | {
+                    content?:
+                      | T
+                      | {
+                          hasTitle?: T;
+                          hasSubtitle?: T;
+                          title?: T;
+                          subtitle?: T;
+                          faq?: T;
+                        };
+                    style?:
+                      | T
+                      | {
+                          style?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              highlights?:
+                | T
+                | {
+                    content?:
+                      | T
+                      | {
+                          title?: T;
+                          highlights?:
+                            | T
+                            | {
+                                icon?: T;
+                                title?: T;
+                                text?: T;
+                                id?: T;
+                              };
+                        };
+                    style?:
+                      | T
+                      | {
+                          style?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              services?:
+                | T
+                | {
+                    content?:
+                      | T
+                      | {
+                          hasTitle?: T;
+                          hasSubtitle?: T;
+                          hasButton?: T;
+                          title?: T;
+                          subtitle?: T;
+                          subtitle_html?: T;
+                          buttonType?: T;
+                          buttonText?: T;
+                          ctaTitle?: T;
+                          ctaHasMessage?: T;
+                          ctaHasBudget?: T;
+                          buttonLink?: T;
+                          services?:
+                            | T
+                            | {
+                                icon?: T;
+                                title?: T;
+                                description?: T;
+                                id?: T;
+                              };
+                        };
+                    style?:
+                      | T
+                      | {
+                          style?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              steps?:
+                | T
+                | {
+                    content?:
+                      | T
+                      | {
+                          hasTitle?: T;
+                          hasSubtitle?: T;
+                          hasButton?: T;
+                          title?: T;
+                          subtitle?: T;
+                          subtitle_html?: T;
+                          buttonType?: T;
+                          buttonText?: T;
+                          ctaTitle?: T;
+                          ctaHasMessage?: T;
+                          ctaHasBudget?: T;
+                          buttonLink?: T;
+                          steps?:
+                            | T
+                            | {
+                                title?: T;
+                                description?: T;
+                                id?: T;
+                              };
+                        };
+                    style?:
+                      | T
+                      | {
+                          style?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              blog?:
+                | T
+                | {
+                    content?:
+                      | T
+                      | {
+                          blogs?: T;
+                        };
+                    style?:
+                      | T
+                      | {
+                          style?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              cta?:
+                | T
+                | {
+                    content?:
+                      | T
+                      | {
+                          title?: T;
+                          text?: T;
+                          buttonType?: T;
+                          buttonText?: T;
+                          ctaTitle?: T;
+                          ctaHasMessage?: T;
+                          ctaHasBudget?: T;
+                          buttonLink?: T;
+                          image?: T;
+                        };
+                    style?:
+                      | T
+                      | {
+                          style?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+              review?:
+                | T
+                | {
+                    content?:
+                      | T
+                      | {
+                          title?: T;
+                          reveiws?: T;
+                        };
+                    style?:
+                      | T
+                      | {
+                          style?: T;
+                        };
+                    id?: T;
+                    blockName?: T;
+                  };
+            };
+      };
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blogs_select".
+ */
+export interface BlogsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  content?:
+    | T
+    | {
+        category?: T;
+        featured?: T;
+        description?: T;
+        image?: T;
+        content?: T;
+        content_html?: T;
+        ctaHeading?: T;
+        ctaDescription?: T;
+        buttonType?: T;
+        buttonText?: T;
+        ctaTitle?: T;
+        ctaHasMessage?: T;
+        ctaHasBudget?: T;
+        buttonLink?: T;
+      };
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reviews_select".
+ */
+export interface ReviewsSelect<T extends boolean = true> {
+  title?: T;
+  name?: T;
+  text?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs_select".
+ */
+export interface FaqsSelect<T extends boolean = true> {
+  category?: T;
+  question?: T;
+  answer?: T;
+  answer_html?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "policies_select".
+ */
+export interface PoliciesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  content?: T;
+  content_html?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
+  prefix?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-locked-documents_select".
+ */
+export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
+  document?: T;
+  globalSlug?: T;
+  user?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-preferences_select".
+ */
+export interface PayloadPreferencesSelect<T extends boolean = true> {
+  user?: T;
+  key?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-migrations_select".
+ */
+export interface PayloadMigrationsSelect<T extends boolean = true> {
+  name?: T;
+  batch?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

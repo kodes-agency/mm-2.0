@@ -1,9 +1,10 @@
 import { MetadataRoute } from 'next'
-import { getPayloadHMR } from '@payloadcms/next/utilities'
-import configPromise from '@payload-config'
+import { getPayload } from 'payload'
+import config from '@payload-config'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const payload = await getPayloadHMR({ config: configPromise })
+      const payload = await getPayload({ config })
+
     const blogs = await payload.find({
         collection: 'blogs',
         pagination: false,

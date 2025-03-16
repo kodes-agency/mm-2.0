@@ -3,8 +3,8 @@ import { About } from "@/components/nextComponents/Home/About"
 import { Services } from "@/components/nextComponents/Home/Services"
 import { CTA } from "@/components/nextComponents/Home/CTA"
 import { Blog } from "@/components/nextComponents/Home/Blog"
-import { getPayloadHMR } from '@payloadcms/next/utilities'
-import configPromise from '@payload-config'
+import { getPayload } from 'payload'
+import config from '@payload-config'
 import { Metadata } from 'next'
  
 export const metadata: Metadata = {
@@ -16,7 +16,8 @@ export const dynamic = 'force-dynamic'
 
 
 const Page = async () => {
-    const payload = await getPayloadHMR({ config: configPromise })
+      const payload = await getPayload({ config })
+
     
     const services = await payload.find({
         collection: 'services',

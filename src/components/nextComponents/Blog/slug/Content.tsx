@@ -131,7 +131,7 @@ export const Content = ({ blog }: { blog: Blog }) => {
       <div
         id="box"
         className="flex flex-col text-black md:max-w-[60vw] md:w-[768px] md:-mr-[20vw]
-          [&_blockquote]:font-bold [&_blockquote]:pl-5 md:[&_blockquote]:pl-10 [&_blockquote]:text-red [&_blockquote]:text-lg [&_blockquote]:max-w-3xl
+          [&_blockquote]:font-bold [&_blockquote]:ml-5 md:[&_blockquote]:ml-10 [&_blockquote]:pl-4 [&_blockquote]:text-black [&_blockquote]:text-lg [&_blockquote]:max-w-3xl [&_blockquote]:border-l-2 [&_blockquote]:border-black
           space-y-4
           [&_h3]:text-4xl [&_h3]:pt-3
           [&_img]:w-full [&_img]:h-[50vh] [&_img]:object-cover

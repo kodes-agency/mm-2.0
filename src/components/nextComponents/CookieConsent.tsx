@@ -46,7 +46,7 @@ export const CookieConsent = ({changable}:{changable?:boolean}) => {
 
     const consentCookie = getCookie('consent')
     if (!consentCookie) setConsent(false)
-  }, [])
+  }, [consentData])
 
   const acceptAllCookies = () => {
     setConsent(true)
